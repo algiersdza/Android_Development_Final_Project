@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">CST2335 Final Project</string>
+    <string name="NASA">NASA</string>
+    <string name="imageOfTheDay">Image of the day</string>
+    <string name="submit">Submit</string>
+    <string name="enterDate">Enter a date</string>
+    <string name="ddmmyy">"dd/mm/yy"</string>
+    <string name="longitude">Longitude</string>
+    <string name="latitude">Latitude</string>
+    <string name="done">Done</string>
 </resources>
