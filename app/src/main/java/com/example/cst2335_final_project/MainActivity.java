@@ -17,10 +17,8 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
     EditText editDate;
-    Button submit;
+    Button submit, tempButton;
     final Calendar myCalendar = Calendar.getInstance();
-
-    Button tempButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

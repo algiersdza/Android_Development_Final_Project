@@ -21,13 +21,23 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"/>
 
-    <ImageButton
+    <CheckBox
         android:id="@+id/favBtn"
-        android:layout_width="wrap_content"
+        android:layout_width="32dp"
         android:layout_height="wrap_content"
         android:layout_alignTop="@id/image1"
-        android:layout_toEndOf="@id/image1"
-        android:src="@drawable/star_white_32" />
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@id/image1" />
+
+    <TextView
+        android:id="@+id/save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/favBtn"
+        android:layout_marginLeft="1dp"
+        android:layout_marginBottom="15dp"
+        android:layout_toRightOf="@id/favBtn"
+        android:text="@string/save" />
 
     <ImageView
         android:id="@+id/image1"

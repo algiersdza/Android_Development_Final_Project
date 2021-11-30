@@ -5,7 +5,9 @@
     <string name="submit">Submit</string>
     <string name="enterDate">Enter a date</string>
     <string name="ddmmyy">"dd/mm/yy"</string>
-    <string name="longitude">Longitude</string>
-    <string name="latitude">Latitude</string>
+    <string name="date">"Date: "</string>
+    <string name="save">Save</string>
+    <string name="saved2fav">Saved to Favourites</string>
+    <string name="unsaved">Unsaved from Favourites</string>
     <string name="done">Done</string>
 </resources>

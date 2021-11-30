@@ -8,11 +8,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.util.Xml;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -22,10 +27,10 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class ActivityImageGen extends AppCompatActivity {
-
     public static TextView ddmmyy;
     public static ProgressBar progressBar;
     public static ImageView imageOfDay;
+    CheckBox favCheck;
     //public static String urlKey o.o
 
     @Override
@@ -42,6 +47,21 @@ public class ActivityImageGen extends AppCompatActivity {
 
         //image of the day
         imageOfDay = (ImageView)findViewById(R.id.image1);
+
+        //arrival toast "Image Generated"
+        Toast.makeText(this, "Image Generated", Toast.LENGTH_LONG).show();
+
+        //favourites Snackbar Checkbox -> Saved/Unsaved to Favourites
+        favCheck = (CheckBox) findViewById(R.id.favBtn);
+        favCheck.setOnCheckedChangeListener((CompoundButton cb, boolean b) -> {
+            if (b){//save
+                Snackbar.make(favCheck, getString(R.string.saved2fav), Snackbar.LENGTH_LONG)
+                        .setAction("Undo", click -> favCheck.setChecked(!b)).show();
+            }else{
+                Snackbar.make(favCheck, getString(R.string.unsaved), Snackbar.LENGTH_LONG)
+                        .setAction("Undo", click -> favCheck.setChecked(!b)).show();
+            }
+        });
 
         //set up url api key
         //urlKey = "GtIt36FWCP5fvOaaJVjUAiEqTmlNSmZqoH6jAT7L";
