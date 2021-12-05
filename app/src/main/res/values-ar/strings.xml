@@ -3,13 +3,15 @@
     <string name="app_name">المشروع النهائي CST2335</string>
     <!-- TODO pls cheq ze translasiooonez of ze stringy ibrasan-->
     <string name="NASA">NASA</string>
-    <string name="imageOfTheDay">Image of the day</string>
-    <string name="submit">Submit</string>
-    <string name="enterDate">Enter a date</string>
+    <string name="imageOfTheDay">صورة اليوم</string>
+    <string name="submit">إرسال</string>
+    <string name="enterDate">أدخل التاريخ</string>
     <string name="ddmmyy">"dd/mm/yy"</string>
-    <string name="date">"Date: "</string>
-    <string name="save">Save</string>
-    <string name="saved2fav">Saved to Favourites</string>
-    <string name="unsaved">Unsaved from Favourites</string>
+    <string name="date">"تاريخ: "</string>
+    <string name="save">حفظ</string>
+    <string name="saved2fav">المحفوظة في المفضلة</string>
+    <string name="unsaved">غير محفوظ من المفضلة</string>
+    <string name="open">افتح</string>
+    <string name="close">أغلق</string>
     <string name="done">انتهى</string>
 </resources>

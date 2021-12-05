@@ -10,4 +10,6 @@
     <string name="saved2fav">Saved to Favourites</string>
     <string name="unsaved">Unsaved from Favourites</string>
     <string name="done">Done</string>
+    <string name="open">open</string>
+    <string name="close">close</string>
 </resources>
