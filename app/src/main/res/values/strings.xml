@@ -1,15 +1,44 @@
 <resources>
     <string name="app_name">CST2335 Final Project</string>
-    <string name="NASA">NASA</string>
-    <string name="imageOfTheDay">Image of the day</string>
-    <string name="submit">Submit</string>
-    <string name="enterDate">Enter a date</string>
+    <string name="app_version">Alpha 0.5</string>
+    <string name="Author_1">Mimi Dib</string>
+    <string name="Author_2">Ibrahim Hermouche</string>
+    <string name="NASA_Title_Header">NASA</string>
+    <string name="Show_Text_Image_Of_Day">Image of the day</string>
+    <string name="Prompt_Submit_Button">Submit</string>
+    <string name="Show_Text_Enter_Date">Enter a date</string>
     <string name="ddmmyy">"dd/mm/yy"</string>
-    <string name="date">"Date: "</string>
-    <string name="save">Save</string>
-    <string name="saved2fav">Saved to Favourites</string>
-    <string name="unsaved">Unsaved from Favourites</string>
-    <string name="done">Done</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+    <string name="Show_Text_Date">"Date: "</string>
+    <string name="Show_Text_Save">Save</string>
+    <string name="Show_Message_Saved_To_Favourites">Saved to Favourites</string>
+    <string name="Show_Message_Not_Saved_To_Favourites">Unsaved from Favourites</string>
+    <string name="Show_Text_Done">Done</string>
+    <string name="Show_Drawer_Open">Drawer slide opened</string>
+    <string name="Show_Drawer_Close">Drawer slide closed</string>
+    <string name="Login_Success_Message">Login successful</string>
+
+    <!-- strings for menus -->
+    <string name="Prompt_Go_To_Main_Activity">Main Page</string>
+    <string name="Prompt_Go_To_Favourites">Favourites List</string>
+    <string name="Prompt_Go_To_Image_Of_The_Day">Find an Image by Date</string>
+    <string name="Prompt_Go_To_Random_Image">Random Image</string>
+    <string name="Show_Text_Show_Help">Show Help</string>
+    <string name="Other_Branch">Other Fun Stuff</string>
+    <!-- Toast messages for toolbars and navigation -->
+    <string name="Show_Message_Main_Activity">Welcome to the Main Page</string>
+    <string name="Show_Message_Favourites">Opening Favourites List</string>
+    <string name="Show_Message_Image_Date">Started Image of the Day</string>
+    <string name="Show_Message_Random_Image">Started Random Image</string>
+    <string name="Show_Message_Help_alert">Help Initiated!</string>
+    <string name="Show_Activity_Currently">Which activity is it?</string>
+    <string name="Show_Message_Logged_Out">Logged Out successfully!</string>
+
+    <!-- strings for main activity (login) -->
+    <string name="prompt_email">Enter your email address:</string>
+    <string name="prompt_email_hint">Type email here</string>
+    <string name="prompt_password">Type your password:</string>
+    <string name="action_login">LOGIN</string>
+    <string name="Prompt_Go_To_Logout">Logout</string>
+
+
 </resources>

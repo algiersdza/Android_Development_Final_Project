@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/Menu_Toolbar_Main"
+        android:title="@string/Prompt_Go_To_Main_Activity"
+        android:icon="@drawable/ic_action_home"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/Menu_Toolbar_Favourites"
+        android:title="@string/Prompt_Go_To_Favourites"
+        android:icon="@drawable/ic_action_favs"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/Menu_Toolbar_Help"
+        android:title="@string/Show_Text_Show_Help"
+        android:icon="@drawable/ic_action_help"
+        app:showAsAction="always"
+        />
+    <item
+        android:id="@+id/Menu_Toolbar_Random_Generator"
+        android:title="@string/Prompt_Go_To_Random_Image"
+        />
+    <item
+        android:id="@+id/Menu_Toolbar_Search_By_Date"
+        android:title="@string/Prompt_Go_To_Image_Of_The_Day"
+        />
+    <item
+        android:title="@string/Prompt_Go_To_Logout"
+        android:id="@+id/Menu_Toolbar_Logout">
+    </item>
+</menu>

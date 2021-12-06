@@ -2,16 +2,47 @@
 <resources>
     <string name="app_name">المشروع النهائي CST2335</string>
     <!-- TODO pls cheq ze translasiooonez of ze stringy ibrasan-->
-    <string name="NASA">NASA</string>
-    <string name="imageOfTheDay">صورة اليوم</string>
-    <string name="submit">إرسال</string>
-    <string name="enterDate">أدخل التاريخ</string>
+    <!-- TODO translasiooonez of ze stringy is very guuurrrd Mimi-san-->
+    <string name="NASA_Title_Header">ناسا</string>
+    <string name="app_version">Alpha 0.5</string>
+    <string name="Author_1">Mimi Dib</string>
+    <string name="Author_2">Ibrahim Hermouche</string>
+    <string name="Show_Text_Image_Of_Day">صورة اليوم</string>
+    <string name="Prompt_Submit_Button">إرسال</string>
+    <string name="Show_Text_Enter_Date">أدخل التاريخ</string>
     <string name="ddmmyy">"dd/mm/yy"</string>
-    <string name="date">"تاريخ: "</string>
-    <string name="save">حفظ</string>
-    <string name="saved2fav">المحفوظة في المفضلة</string>
-    <string name="unsaved">غير محفوظ من المفضلة</string>
-    <string name="open">افتح</string>
-    <string name="close">أغلق</string>
-    <string name="done">انتهى</string>
+    <string name="Show_Text_Date">"تاريخ: "</string>
+    <string name="Show_Text_Save">حفظ</string>
+    <string name="Show_Message_Saved_To_Favourites">تم الحفظ في قائمة المفضلة </string>
+    <string name="Show_Message_Not_Saved_To_Favourites">إلغاء الحفظ من قائمة المفضلة</string>
+    <string name="Show_Drawer_Open">تم فتح شريحة الدرج </string>
+    <string name="Show_Drawer_Close">تم إغلاق شريحة الدرج </string>
+    <string name="Show_Text_Done">انتهى</string>
+    <string name="Login_Success_Message">تم تسجيل الدخول بنجاح </string>
+
+    <!-- strings for menus -->
+    <string name="Prompt_Go_To_Main_Activity"> الصفحة الرئيسية </string>
+    <string name="Prompt_Go_To_Favourites"> قائمة المفضلة </string>
+    <string name="Prompt_Go_To_Image_Of_The_Day">البحث عن صورة حسب التاريخ </string>
+    <string name="Prompt_Go_To_Random_Image">صورة عشوائية </string>
+    <string name="Show_Text_Show_Help">عرض المساعدة </string>
+    <string name="Other_Branch"> أشياء أخرى ممتعة </string>
+
+    <!-- Toast messages for toolbars and navigation -->
+    <string name="Show_Message_Main_Activity">مرحبًا بك في الصفحة الرئيسية </string>
+    <string name="Show_Message_Favourites">فتح قائمة المفضلة </string>
+    <string name="Show_Message_Image_Date">صورة اليوم التي تم بدء تشغيلها </string>
+    <string name="Show_Message_Random_Image">بدء صورة عشوائية </string>
+    <string name="Show_Message_Help_alert">بدء المساعدة! </string>
+    <string name="Show_Activity_Currently">ما هو النشاط؟ </string>
+    <string name="Show_Message_Logged_Out"> تم تسجيل الخروج بنجاح! </string>
+
+    <!-- strings for main activity (login) -->
+    <string name="prompt_email">أدخل عنوان بريدك الإلكتروني: </string>
+    <string name="prompt_email_hint">اكتب البريد الإلكتروني هنا </string>
+    <string name="prompt_password">اكتب كلمة المرور الخاصة بك: </string>
+    <string name="action_login">تسجيل الدخول </string>
+    <string name="Prompt_Go_To_Logout">تسجيل خروج </string>
+
+
 </resources>

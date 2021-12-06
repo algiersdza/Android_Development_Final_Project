@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DrawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <include 
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+        <TextView
+            android:id="@+id/NASA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/ToolBar_ID"
+            android:text="@string/NASA_Title_Header"
+            android:textSize="20dp" />
+        <TextView
+            android:id="@+id/imageOfTheDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_Text_Image_Of_Day"
+            android:layout_below="@+id/NASA"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+
+        <TextView
+            android:id="@+id/TextView_Selection_Enter_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageOfTheDay"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:text="@string/Show_Text_Enter_Date" />
+
+        <EditText
+            android:id="@+id/EditText_Selection_Date_Picker"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:layout_below="@id/TextView_Selection_Enter_Date"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:clickable="false"
+            android:textAlignment="center"
+            android:cursorVisible="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:hint="@string/ddmmyy" />
+
+        <Button
+            android:id="@+id/Button_Selection_Submit_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/EditText_Selection_Date_Picker"
+            android:layout_marginTop="20dp"
+            android:layout_alignStart="@id/EditText_Selection_Date_Picker"
+            android:layout_alignEnd="@+id/EditText_Selection_Date_Picker"
+            android:text="@string/Prompt_Submit_Button" />
+
+        <Button
+            android:id="@+id/Button_Selection_Fav_List"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Button_Selection_Submit_Date"
+            android:layout_alignStart="@id/EditText_Selection_Date_Picker"
+            android:layout_alignEnd="@+id/EditText_Selection_Date_Picker"
+            android:layout_marginTop="20dp"
+            android:text="@string/Prompt_Go_To_Favourites" />
+
+        <Button
+            android:id="@+id/Button_Selection_Random_Generator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Button_Selection_Fav_List"
+            android:layout_alignStart="@id/EditText_Selection_Date_Picker"
+            android:layout_alignEnd="@+id/EditText_Selection_Date_Picker"
+            android:layout_marginTop="20dp"
+            android:text="@string/Prompt_Go_To_Random_Image" />
+
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/Nav_View"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+
+        />
+</androidx.drawerlayout.widget.DrawerLayout>
+
+
+
+<!--        later-->
+<!--        <FrameLayout-->
+<!--            android:id="@+id/fragment_container"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent" />-->
+

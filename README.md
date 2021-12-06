@@ -7,16 +7,12 @@ This application will accept a date and retrieve an image from "NASA Image of th
 This application supports arabic language interface.
 
 # TODO list features as they are completed
-- [ ] ListView and show details of the selected item
-- [ ] Progress bar and buttons
-- [ ] Edit texts toasts and snackbars
-- [ ] 4 or more activities
-- [ ] Activities must be accessible from toolbar and navigation icons
-- [ ] Fragment views ( maybe for the help alertDialog as well FragDialog)  
-- [ ] Help menu item to give user instructions of the current activity
-- [ ] App supported with another language.
-- [ ] Listview items must be stored and retrieved when app starts again.
-- [ ] Data is retrieved using AsyncTask.
-- [ ] SharedPreferences is used in the application (maybe username?)
-- [ ] JavaDoc comments
+navigate to respective activities from navbar and toolbar
+1) go to main page(ActivitySelection)
+2) go to image finder(ActivtyImageGen (seperate date selection / or go again / if from nav bar load a last image?
+3) go to random image selector ( generates a random image from a random date)
+4) go to favourite images
+5) logout (go to login page, MainActivity)
+6) parse Nasa for image
+
 

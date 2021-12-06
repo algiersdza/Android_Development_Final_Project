@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ToolBar_ID"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fitsSystemWindows="true"
+    android:minHeight="?attr/actionBarSize"
+    android:background="@color/teal_200">
+
+</androidx.appcompat.widget.Toolbar>
+
+<!--    <androidx.drawerlayout.widget.DrawerLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/DrawerLayout_Lab8"-->
+<!--        tools:openDrawer="start">-->
+<!--        <com.google.android.material.navigation.NavigationView-->
+<!--            android:id="@+id/Nav_View"-->
+<!--            android:layout_below="@id/ToolBar_ID"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            android:layout_gravity="start"-->
+<!--            app:headerLayout="@layout/drawer_header"-->
+<!--            app:menu="@menu/nav_menu"-->
+<!--            />-->
+<!--    </androidx.drawerlayout.widget.DrawerLayout>-->
+
+    
+

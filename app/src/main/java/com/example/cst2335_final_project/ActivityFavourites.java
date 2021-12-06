@@ -19,7 +19,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class favouritesActivity extends AppCompatActivity {
+public class ActivityFavourites extends AppCompatActivity {
 
     private static List<FavourtiesList> favsList = new ArrayList<>();
     public static final String ACTIVITY_NAME = "FAV_ACTIVITY";

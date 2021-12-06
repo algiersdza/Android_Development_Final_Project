@@ -1,12 +1,14 @@
 package com.example.cst2335_final_project;
 
-import static com.example.cst2335_final_project.favouritesActivity.ACTIVITY_NAME;
+import static com.example.cst2335_final_project.ActivityFavourites.ACTIVITY_NAME;
 
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Xml;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -15,29 +17,39 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.net.HttpURLConnection;
-import java.net.URL;
-
-public class ActivityImageGen extends AppCompatActivity {
+public class ActivityImageGen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    ActionBarDrawerToggle actionBarDrawerToggle;
     public static TextView ddmmyy;
     public static ProgressBar progressBar;
     public static ImageView imageOfDay;
     CheckBox favCheck;
-    //public static String urlKey o.o
+    public final static String urlKey ="GtIt36FWCP5fvOaaJVjUAiEqTmlNSmZqoH6jAT7L";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_generated);
 
+        toolbar = findViewById(R.id.ToolBar_ID);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.DrawerLayout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.Show_Drawer_Open,R.string.Show_Drawer_Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView = findViewById(R.id.Nav_View);
+        navigationView.setNavigationItemSelectedListener(this);
         //Progress bar
         progressBar = (ProgressBar) findViewById(R.id.prgBar);
 
@@ -55,10 +67,10 @@ public class ActivityImageGen extends AppCompatActivity {
         favCheck = (CheckBox) findViewById(R.id.favBtn);
         favCheck.setOnCheckedChangeListener((CompoundButton cb, boolean b) -> {
             if (b){//save
-                Snackbar.make(favCheck, getString(R.string.saved2fav), Snackbar.LENGTH_LONG)
+                Snackbar.make(favCheck, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG)
                         .setAction("Undo", click -> favCheck.setChecked(!b)).show();
             }else{
-                Snackbar.make(favCheck, getString(R.string.unsaved), Snackbar.LENGTH_LONG)
+                Snackbar.make(favCheck, getString(R.string.Show_Message_Not_Saved_To_Favourites), Snackbar.LENGTH_LONG)
                         .setAction("Undo", click -> favCheck.setChecked(!b)).show();
             }
         });
@@ -71,6 +83,60 @@ public class ActivityImageGen extends AppCompatActivity {
         //imageQueryObj.execute(urlKey);
 
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Menu_Toolbar_Main:
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Help:
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Favourites:
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Favourites, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Random_Generator:
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Random_Image,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Search_By_Date:
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Menu_Nav_Main:
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Fav_List:
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Favourites, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Random_Image:
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Random_Image,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Image_Date:
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
     private class ImageQuery extends AsyncTask<String, Integer, String>{
         //TODO should this stay a String or to a Date variable to order by date later
         private String ddmmyy2;

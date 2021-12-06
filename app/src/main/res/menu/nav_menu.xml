@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <group android:checkableBehavior="single">
+        <item android:title="@string/Prompt_Go_To_Main_Activity"
+            android:icon="@drawable/ic_action_home"
+            android:id="@+id/Menu_Nav_Main" />
+        <item android:title="@string/Prompt_Go_To_Image_Of_The_Day"
+            android:icon="@drawable/ic_action_date"
+            android:id="@+id/Menu_Nav_Image_Date"
+            />
+        <item android:title="@string/Prompt_Go_To_Favourites"
+            android:icon="@drawable/ic_action_favs"
+        android:id="@+id/Menu_Nav_Fav_List"
+        />
+    </group>
+
+    <item android:title="@string/Other_Branch">
+        <menu>
+            <item android:title="@string/Prompt_Go_To_Random_Image"
+                android:icon="@drawable/ic_action_random"
+                android:id="@+id/Menu_Nav_Random_Image"/>
+
+            <item android:title="@string/Prompt_Go_To_Logout"
+                android:id="@+id/Menu_Nav_Logout"/>
+        </menu>
+    </item>
+
+
+</menu>

@@ -4,128 +4,195 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.DatePickerDialog;
-import android.app.Notification;
-import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    Button loginBtn;
+    EditText emailString;
+    String sharePrefName = "MySharedPref";
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    EditText editDate;
-    Button submit, tempButton;
+    // toolbar+nav
     Toolbar toolbar;
-    final Calendar myCalendar = Calendar.getInstance();
-    public static final String ACTIVITY_NAME = "MAIN_ACTIVITY";
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //toolbar
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar); //loads toolbar -> also calls onCreateOptionsMenu if we need one l8er
-        //nav drawer
-        DrawerLayout drawer = findViewById(R.id.drawer);
-        ActionBarDrawerToggle toggleDrawer = new ActionBarDrawerToggle(this, drawer,
-                toolbar, R.string.open, R.string.close);
-        drawer.addDrawerListener(toggleDrawer);
-        toggleDrawer.syncState();
-        //Navigation View -> from activity_toolbar > navbar contents
-        NavigationView navView = findViewById(R.id.navView);
-        navView.setNavigationItemSelectedListener(this);
+        //toolbar+nav
+        toolbar = findViewById(R.id.ToolBar_ID);
+        setSupportActionBar(toolbar);
+        drawerLayout = findViewById(R.id.DrawerLayout);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.Show_Drawer_Open,R.string.Show_Drawer_Close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+        navigationView = findViewById(R.id.Nav_View);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        //temporary button to go to favourites -> drawer will take to favourites later
-        tempButton = (Button) findViewById(R.id.tempButton);
-        tempButton.setOnClickListener(click -> {
-            Intent favIntent = new Intent(this, favouritesActivity.class);
-            startActivity(favIntent);
-        });
+        emailString = findViewById(R.id.EditText_Main_Email_Input);
+        loginBtn = findViewById(R.id.Button_Main_Login);
 
-        //calendar picker done on edit text
-        DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int day) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, day);
-                updateLabel();
-            }
-        };
-        //on click edit text bring DatePickerDialog
-        editDate = (EditText) findViewById(R.id.pickDate);
-        editDate.setOnClickListener(new View.OnClickListener() {
+        SharedPreferences prefs = getSharedPreferences(sharePrefName,MODE_PRIVATE);
+        String s1 = prefs.getString("emailString", "");
+        emailString.setText(s1);
+
+        // lab 3 button login to give intent to go next activity ( ProfileActivity)
+        loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new DatePickerDialog(MainActivity.this, date, myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                Intent intent = new Intent(MainActivity.this, ActivitySelection.class);
+                MainActivity.this.startActivity(intent);
+                Toast.makeText(MainActivity.this, getString(R.string.Login_Success_Message), Toast.LENGTH_SHORT).show();
             }
         });
 
-        //submit button takes to activity_image_generated.xml
-        submit = (Button) findViewById(R.id.submitBtn);
-        submit.setOnClickListener(new View.OnClickListener(){
-
-            @Override
-            public void onClick(View view) {
-                //go to activity_generate.xml with date data from editText
-                Intent imageIntent = new Intent(MainActivity.this, ActivityImageGen.class);
-                startActivity(imageIntent);
-            }
-        });
-        //log
-        Log.e(ACTIVITY_NAME, "*****Inside OnCreate()*****");
     }
-    //TODO toolbar options menu
+
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //inflate menu?
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //update label method
-    private void updateLabel(){
-        String dateFormat = "mm/dd/yy";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.CANADA);
-
-        editDate.setText(simpleDateFormat.format(myCalendar.getTime()));
-    }
-
-    //Milestone 2 -> toolbar
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        /*
-        //switch case -> action on item selected
-        switch(item.getItemId()){
-            case R.id.navHome: //TODO : is there a way to just close the drawer ?
-                Toast.makeText(this, "Already on Home page", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.navFav: //open favouritesActivity
-                Intent favIntent = new Intent(this, favouritesActivity.class);
-                startActivity(favIntent);
-                break;
-        }
-
-         */
-
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.toolbar_menu,menu);
         return true;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Menu_Toolbar_Main:
+                Intent goToMainPage = new Intent(MainActivity.this,ActivitySelection.class);
+                MainActivity.this.startActivity(goToMainPage);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Help:
+                // alert dailog here
+
+
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Favourites:
+                Intent goToFavs = new Intent(MainActivity.this,ActivityFavourites.class);
+                MainActivity.this.startActivity(goToFavs);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Favourites, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Random_Generator:
+                Intent goToRandomGen = new Intent(MainActivity.this,ActivityRandomGen.class);
+                MainActivity.this.startActivity(goToRandomGen);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Random_Image,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Search_By_Date:
+                Intent goToImageGen = new Intent(MainActivity.this,ActivityImageGen.class);
+                MainActivity.this.startActivity(goToImageGen);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Toolbar_Logout:
+                Intent goToLogin = new Intent(MainActivity.this,MainActivity.class);
+                MainActivity.this.startActivity(goToLogin);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Logged_Out,Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.Menu_Nav_Main:
+                Intent goToMainPage = new Intent(MainActivity.this,ActivitySelection.class);
+                MainActivity.this.startActivity(goToMainPage);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Fav_List:
+                Intent goToFavs = new Intent(MainActivity.this,ActivityFavourites.class);
+                MainActivity.this.startActivity(goToFavs);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Favourites, Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Random_Image:
+                Intent goToRandomGen = new Intent(MainActivity.this,ActivityRandomGen.class);
+                MainActivity.this.startActivity(goToRandomGen);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Random_Image,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Image_Date:
+                Intent goToImageGen = new Intent(MainActivity.this,ActivityImageGen.class);
+                MainActivity.this.startActivity(goToImageGen);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.Menu_Nav_Logout:
+                Intent goToLogin = new Intent(MainActivity.this,MainActivity.class);
+                MainActivity.this.startActivity(goToLogin);
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Logged_Out,Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EditText emailString = findViewById(R.id.EditText_Main_Email_Input);
+        String sharePrefName = "MySharedPref";
+        SharedPreferences prefs = MainActivity.this.getSharedPreferences(sharePrefName, MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = prefs.edit();
+        myEdit.putString("emailString", emailString.getText().toString());
+        myEdit.commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        loginBtn = findViewById(R.id.Button_Main_Login);
+        emailString = findViewById(R.id.EditText_Main_Email_Input);
+        String sharePrefName = "MySharedPref";
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                SharedPreferences prefs = MainActivity.this.getSharedPreferences(sharePrefName, MODE_PRIVATE);
+                SharedPreferences.Editor myEdit = prefs.edit();
+                myEdit.putString("emailString", emailString.getText().toString());
+                myEdit.commit();
+            }
+        });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loginBtn = findViewById(R.id.Button_Main_Login);
+        loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ActivitySelection.class);
+                MainActivity.this.startActivity(intent);
+                Toast.makeText(MainActivity.this, getString(R.string.Login_Success_Message), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
 }

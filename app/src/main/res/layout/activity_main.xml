@@ -1,77 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-
-    <TextView
-        android:id="@+id/NASA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="@string/NASA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
-    <TextView
-        android:id="@+id/imageOfTheDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/imageOfTheDay"
-        android:layout_below="@+id/NASA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
-    <TextView
-        android:id="@+id/enterDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/enterDate"
-        android:layout_below="@+id/imageOfTheDay"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="180dp"/>
-    <EditText
-        android:id="@+id/pickDate"
-        android:layout_width="140dp"
-        android:layout_height="40dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/enterDate"
-        android:layout_marginTop="10dp"
-        android:hint="@string/ddmmyy"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        />
-
-    <Button
-        android:id="@+id/submitBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:text="@string/submit"/>
-
-    <Button
-        android:id="@+id/tempButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="faves"
-        android:layout_toRightOf="@id/submitBtn"
-        android:layout_marginLeft="20dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"/>
+    tools:context=".MainActivity"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <!--including toolbar -->
-        <include layout="@layout/activity_toolbar" />
+
+        <include layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/TextView_Main_Email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_email"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/EditText_Main_Email_Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prompt_email_hint"
+            android:inputType="textEmailAddress"
+            />
+        <TextView
+            android:id="@+id/TextView_Main_Password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/prompt_password"
+            android:textSize="20dp"
+            />
+
+        <EditText
+            android:id="@+id/EditText_Main_Password_Input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            />
+
+        <Button
+            android:id="@+id/Button_Main_Login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/action_login"
+            android:layout_marginHorizontal="100dp"
+            />
+
 
     </LinearLayout>
 
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/Nav_View"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/nav_menu" />
 
-</RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

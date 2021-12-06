@@ -5,32 +5,39 @@
     android:id="@+id/DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start"
-    android:orientation="vertical"
-    tools:context=".ActivityFavourites">
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
 
-        <include layout="@layout/toolbar"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"/>
+            android:layout_below="@+id/ToolBar_ID"
+            android:textSize="50dp"
+            android:text="do things here"/>
 
-        <ListView
-            android:id="@+id/listView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <!-- TODO design here -->
 
     </RelativeLayout>
 
+
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/Nav_View"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
+        android:id="@+id/Nav_View"
         app:headerLayout="@layout/drawer_header"
-        app:menu="@menu/nav_menu" />
+        app:menu="@menu/nav_menu"
+        android:layout_gravity="start"
+
+        />
+
+
 </androidx.drawerlayout.widget.DrawerLayout>

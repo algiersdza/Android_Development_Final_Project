@@ -1,83 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/DrawerLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
 
-    <TextView
-        android:id="@+id/NASA"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30dp"
-        android:text="@string/NASA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"/>
-    <TextView
-        android:id="@+id/imageOfTheDay"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/imageOfTheDay"
-        android:layout_below="@+id/NASA"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/favBtn"
-        android:layout_width="32dp"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/image1"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@id/image1" />
+        <include
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
-    <TextView
-        android:id="@+id/save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/favBtn"
-        android:layout_marginLeft="1dp"
-        android:layout_marginBottom="15dp"
-        android:layout_toRightOf="@id/favBtn"
-        android:text="@string/save" />
+        <TextView
+            android:id="@+id/NASA"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ToolBar_ID"
+            android:textSize="30dp"
+            android:text="@string/NASA_Title_Header"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
+        <TextView
+            android:id="@+id/imageOfTheDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Show_Text_Image_Of_Day"
+            android:layout_below="@+id/NASA"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"/>
 
-    <ImageView
-        android:id="@+id/image1"
-        android:layout_width="200dp"
-        android:layout_height="350dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="20dp" />
+        <CheckBox
+            android:id="@+id/favBtn"
+            android:layout_width="32dp"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/image1"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@id/image1" />
 
-    <TextView
-        android:id="@+id/ddmmyy"
-        android:text="dd-mm-yy"
-        android:textSize="15dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image1"
-        android:layout_marginTop="30dp"
-        android:layout_centerHorizontal="true"/>
+        <TextView
+            android:id="@+id/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/favBtn"
+            android:layout_marginLeft="1dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/favBtn"
+            android:text="@string/Show_Text_Save" />
 
-    <ProgressBar
-        android:id="@+id/prgBar"
-        android:layout_width="200dp"
-        android:layout_height="30dp"
-        android:layout_below="@+id/ddmmyy"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:visibility="invisible" />
+        <ImageView
+            android:id="@+id/image1"
+            android:layout_width="200dp"
+            android:layout_height="350dp"
+            android:layout_below="@id/imageOfTheDay"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="20dp" />
 
-    <!--seeing if fav icon is better than button
+        <TextView
+            android:id="@+id/ddmmyy"
+            android:text="dd-mm-yy"
+            android:textSize="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image1"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"/>
+
+        <ProgressBar
+            android:id="@+id/prgBar"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/ddmmyy"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
+
+        <!--seeing if fav icon is better than button
+            <Button
+            android:id="@+id/favouriteBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>-->
+
+
         <Button
-        android:id="@+id/favouriteBtn"
+            android:id="@+id/doneBtn"
+            android:text="@string/Show_Text_Done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/prgBar"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/Nav_View"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>-->
-
-
-    <Button
-        android:id="@+id/doneBtn"
-        android:text="@string/done"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/prgBar"
-        android:layout_centerHorizontal="true"/>
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/drawer_header"
+        app:menu="@menu/nav_menu" />
+</androidx.drawerlayout.widget.DrawerLayout>
