@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">المشروع النهائي CST2335</string>
     <!-- TODO pls cheq ze translasiooonez of ze stringy ibrasan-->
     <!-- TODO translasiooonez of ze stringy is very guuurrrd Mimi-san-->
+    <string name="app_name">المشروع النهائي CST2335</string>
     <string name="NASA_Title_Header">ناسا</string>
     <string name="app_version">Alpha 0.5</string>
     <string name="Author_1">Mimi Dib</string>
@@ -10,8 +10,8 @@
     <string name="Show_Text_Image_Of_Day">صورة اليوم</string>
     <string name="Prompt_Submit_Button">إرسال</string>
     <string name="Show_Text_Enter_Date">أدخل التاريخ</string>
-    <string name="ddmmyy">"dd/mm/yy"</string>
-    <string name="Show_Text_Date">"تاريخ: "</string>
+    <string name="ddmmyy">yyyy-mm-dd</string>
+    <string name="Show_Text_Date">تاريخ: </string>
     <string name="Show_Text_Save">حفظ</string>
     <string name="Show_Message_Saved_To_Favourites">تم الحفظ في قائمة المفضلة </string>
     <string name="Show_Message_Not_Saved_To_Favourites">إلغاء الحفظ من قائمة المفضلة</string>
@@ -36,6 +36,21 @@
     <string name="Show_Message_Help_alert">بدء المساعدة! </string>
     <string name="Show_Activity_Currently">ما هو النشاط؟ </string>
     <string name="Show_Message_Logged_Out"> تم تسجيل الخروج بنجاح! </string>
+
+    <!--Alert Dialog strings -->
+        <!-- Login -->
+    <string name="Alert_Title_Help_Login">مساعدة ناسا - تسجيل الدخول</string>
+    <string name="Alert_Message_Help_Login">1) أدخل تفاصيل تسجيل الدخول الخاصة بك في حقلي اسم المستخدم وكلمة المرور. 2) اضغط على زر تسجيل الدخول لتسجيل الدخول.</string>
+    <string name="Alert_Neutral_Button">نعم</string>
+        <!-- Activity Selection -->
+    <string name="Alert_Title_Help_AS">مساعدة ناسا - صورة البحث اليوم</string>
+    <string name="Alert_Message_Help_AS">1) أدخل تاريخًا في حقل منتقي التاريخ. 2) اضغط على زر إرسال لاسترداد صورة.</string>
+        <!-- Activity Image Generated -->
+    <string name="Alert_Title_Help_AIG">مساعدة ناسا - صورتك التي تم إنشاؤها</string>
+    <string name="Alert_Message_Help_AIG">استمتع بصورة وكالة ناسا للتاريخ الذي اخترته! يمكنك إضافة هذه الصورة إلى قائمة المفضلة الخاصة بك عن طريق النقر فوق مربع الاختيار حفظ.</string>
+        <!-- Activity Favourites -->
+    <string name="Alert_Title_Help_AF">مساعدة ناسا - المفضلة</string>
+    <string name="Alert_Message_Help_AF">لعرض عنصر في المفضلة ، انقر فوق عنصر القائمة. لإضافة عنصر إلى مفضلاتك ، قم بإنشاء صورة على صفحة البحث عن صورة حسب التاريخ في قائمة الدرج في الجزء العلوي الأيسر من شريط الأدوات.</string>
 
     <!-- strings for main activity (login) -->
     <string name="prompt_email">أدخل عنوان بريدك الإلكتروني: </string>

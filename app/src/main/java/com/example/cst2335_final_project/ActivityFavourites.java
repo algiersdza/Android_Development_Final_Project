@@ -38,6 +38,21 @@ public class ActivityFavourites extends AppCompatActivity {
 
 
     }
+    //TODO Toolbar
+    /* toolbar help instructions done - Alert Dialog
+    case R.id.Menu_Toolbar_Help:
+                // Alert Dialog
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.Alert_Title_Help_AF))
+                        .setMessage(getString(R.string.Alert_Message_Help_AF))
+                        .setNeutralButton(getString(R.string.Alert_Neutral_Button), null)
+                        .create();
+                dialog.show();
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
+                break;
+
+     */
+
     //TODO favourites list
     private class FavourtiesList {
         private final String text;

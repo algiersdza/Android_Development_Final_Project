@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -99,7 +100,13 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Help:
-
+                // Alert Dialog
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.Alert_Title_Help_AIG))
+                        .setMessage(getString(R.string.Alert_Message_Help_AIG))
+                        .setNeutralButton(getString(R.string.Alert_Neutral_Button), null)
+                        .create();
+                dialog.show();
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Favourites:

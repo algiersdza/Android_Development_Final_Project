@@ -1,6 +1,7 @@
 package com.example.cst2335_final_project;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -80,7 +81,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.Menu_Toolbar_Help:
                 // alert dailog here
-
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.Alert_Title_Help_Login))
+                        .setMessage(getString(R.string.Alert_Message_Help_Login))
+                        .setNeutralButton(getString(R.string.Alert_Neutral_Button), null)
+                        .create();
+                dialog.show();
 
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
                 break;
