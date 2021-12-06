@@ -20,13 +20,14 @@
         app:showAsAction="always"
         />
     <item
-        android:id="@+id/Menu_Toolbar_Random_Generator"
-        android:title="@string/Prompt_Go_To_Random_Image"
-        />
-    <item
         android:id="@+id/Menu_Toolbar_Search_By_Date"
         android:title="@string/Prompt_Go_To_Image_Of_The_Day"
         />
+    <item
+        android:id="@+id/Menu_Toolbar_Random_Generator"
+        android:title="@string/Prompt_Go_To_Random_Image"
+        />
+
     <item
         android:title="@string/Prompt_Go_To_Logout"
         android:id="@+id/Menu_Toolbar_Logout">

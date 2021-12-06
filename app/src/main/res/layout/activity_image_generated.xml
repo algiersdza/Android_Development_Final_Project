@@ -26,14 +26,15 @@
             android:text="@string/NASA_Title_Header"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"/>
+
         <TextView
             android:id="@+id/imageOfTheDay"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/Show_Text_Image_Of_Day"
             android:layout_below="@+id/NASA"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"/>
+            android:layout_marginTop="20dp"
+            android:text="@string/Show_Text_Image_Of_Day" />
 
         <CheckBox
             android:id="@+id/favBtn"
@@ -56,26 +57,77 @@
         <ImageView
             android:id="@+id/image1"
             android:layout_width="200dp"
-            android:layout_height="350dp"
+            android:layout_height="210dp"
             android:layout_below="@id/imageOfTheDay"
             android:layout_centerInParent="true"
             android:layout_marginTop="20dp" />
 
         <TextView
-            android:id="@+id/ddmmyy"
-            android:text="dd-mm-yy"
-            android:textSize="15dp"
+            android:id="@+id/TextView_Img_Gen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/image1"
+            android:layout_above="@id/prgBar"
+
+            android:layout_alignStart="@id/prgBar"
+            android:layout_marginBottom="10dp"
+            android:text="@string/Show_Message_Date_Selected_Is"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/yyyy_mm_dd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/prgBar"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/TextView_Img_Gen"
+            android:text="@string/yyyy_mm_dd"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/TextView_Img_Gen_nonHD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image1"
+            android:layout_alignStart="@id/image1"
+            android:layout_marginLeft="35dp"
+            android:text="@string/Show_Text_nonHD" />
+
+        <TextView
+            android:id="@+id/TextView_Img_Gen_HD"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TextView_Img_Gen_nonHD_Dummy"
+            android:layout_alignStart="@id/image1"
             android:layout_marginTop="30dp"
-            android:layout_centerHorizontal="true"/>
+            android:layout_marginLeft="35dp"
+            android:text="@string/Show_Text_HD" />
+
+        <TextView
+            android:id="@+id/TextView_Img_Gen_nonHD_Dummy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/TextView_Img_Gen_nonHD"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center"
+            android:autoLink="web"
+            android:textSize="10dp" />
+        <TextView
+            android:id="@+id/TextView_Img_Gen_HD_Dummy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:autoLink="web"
+            android:textSize="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/TextView_Img_Gen_HD"/>
 
         <ProgressBar
             android:id="@+id/prgBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="200dp"
             android:layout_height="30dp"
-            android:layout_below="@+id/ddmmyy"
+            android:layout_above="@id/doneBtn"
             android:layout_centerHorizontal="true"
             android:visibility="invisible" />
 
@@ -88,11 +140,11 @@
 
         <Button
             android:id="@+id/doneBtn"
-            android:text="@string/Show_Text_Done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/prgBar"
-            android:layout_centerHorizontal="true"/>
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Show_Text_Done" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

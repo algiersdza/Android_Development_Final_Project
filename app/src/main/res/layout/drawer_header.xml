@@ -8,7 +8,11 @@
         android:id="@+id/background_header"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/space_header">
+        android:background="@drawable/space_header_resized"
+        >
+<!--        android:background="@mipmap/ic_launcher"-->
+
+<!--        android:background="@drawable/space_header">-->
 
         <ImageView
             android:id="@+id/bunnyImg"

@@ -7,7 +7,7 @@
     <string name="Show_Text_Image_Of_Day">Image of the day</string>
     <string name="Prompt_Submit_Button">Submit</string>
     <string name="Show_Text_Enter_Date">Enter a date</string>
-    <string name="ddmmyy">"dd/mm/yy"</string>
+    <string name="yyyy_mm_dd">yyyy-mm-dd</string>
     <string name="Show_Text_Date">"Date: "</string>
     <string name="Show_Text_Save">Save</string>
     <string name="Show_Message_Saved_To_Favourites">Saved to Favourites</string>
@@ -25,13 +25,37 @@
     <string name="Show_Text_Show_Help">Show Help</string>
     <string name="Other_Branch">Other Fun Stuff</string>
     <!-- Toast messages for toolbars and navigation -->
-    <string name="Show_Message_Main_Activity">Welcome to the Main Page</string>
+    <string name="Show_Message_Main_Page">Welcome to the Main Page</string>
     <string name="Show_Message_Favourites">Opening Favourites List</string>
     <string name="Show_Message_Image_Date">Started Image of the Day</string>
     <string name="Show_Message_Random_Image">Started Random Image</string>
     <string name="Show_Message_Help_alert">Help Initiated!</string>
     <string name="Show_Activity_Currently">Which activity is it?</string>
     <string name="Show_Message_Logged_Out">Logged Out successfully!</string>
+    <!--  Toast messages if you are on the same activity  -->
+    <string name="Show_Message_is_Main_Page">You are in Main Page Already!</string>
+    <string name="Show_Message_is_Selection_Activity">You are in Selection Page Already!</string>
+    <string name="Show_Message_is_Image_Date">You are in the Image of the Day Page Already!</string>
+    <string name="Show_Message_is_Favorites_Activity">You are in the Favourite Page Already!</string>
+    <string name="Show_Message_is_Random_Activity">You are in the Random Image Page Already!</string>
+    <string name="Show_Message_is_Logged_Out_Activity">You are Logged Out Already!</string>
+
+    <!-- Alert Dialog strings -->
+    <!-- Login -->
+    <string name="Alert_Title_Help_Login">NASA Help - Login</string>
+    <string name="Alert_Message_Help_Login">1) Enter your login details in the username and password fields. \n 2) Tap the \'Login\' button to login.</string>
+    <string name="Alert_Neutral_Button">Ok</string>
+    <!-- Activity Selection -->
+    <string name="Alert_Title_Help_AS">NASA Help - Search an image by date </string>
+    <string name="Alert_Message_Help_AS">1) Enter a date in the date picker field i.e. \'yyyy-mm-dd\'.\n2) Tap the \'Submit\' button to retrieve an image.</string>
+    <!-- Activity Image Generated -->
+    <string name="Alert_Title_Help_AIG">NASA Help - Your generated image</string>
+    <string name="Alert_Message_Help_AIG">Enjoy the NASA image of your chosen date!\n You can add this image to your list of Favourites by tapping the \'Save\' checkbox.</string>
+    <!-- Activity Favourites -->
+    <string name="Alert_Title_Help_AF">NASA Help - Favourites</string>
+    <string name="Alert_Message_Help_AF">To view an item in your favourites, click a list item. To add an item to your favourites, generate an image on the \'Find an image by Date\' page in your drawer menu at the top left of the toolbar.</string>
+
+
 
     <!-- strings for main activity (login) -->
     <string name="prompt_email">Enter your email address:</string>
@@ -39,6 +63,11 @@
     <string name="prompt_password">Type your password:</string>
     <string name="action_login">LOGIN</string>
     <string name="Prompt_Go_To_Logout">Logout</string>
+
+
+    <string name="Show_Message_Date_Selected_Is">The date selected is: </string>
+    <string name="Show_Text_nonHD">The non-hd image URL is: </string>
+    <string name="Show_Text_HD">The HD Image URL is: </string>
 
 
 </resources>

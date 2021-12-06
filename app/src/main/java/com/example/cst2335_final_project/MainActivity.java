@@ -1,28 +1,33 @@
 package com.example.cst2335_final_project;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+    String TAG = this.getClass().getSimpleName();
     Button loginBtn;
+    TextView whatActivityText;
     EditText emailString;
     String sharePrefName = "MySharedPref";
-
     // toolbar+nav
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -36,22 +41,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //toolbar+nav
         toolbar = findViewById(R.id.ToolBar_ID);
+
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.DrawerLayout);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.Show_Drawer_Open,R.string.Show_Drawer_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView = findViewById(R.id.Nav_View);
+        View headerView = navigationView.getHeaderView(0);
+        whatActivityText = headerView.findViewById(R.id.TextView_Header_Editable);
+        whatActivityText.setText(TAG);
         navigationView.setNavigationItemSelectedListener(this);
 
         emailString = findViewById(R.id.EditText_Main_Email_Input);
         loginBtn = findViewById(R.id.Button_Main_Login);
 
+
         SharedPreferences prefs = getSharedPreferences(sharePrefName,MODE_PRIVATE);
         String s1 = prefs.getString("emailString", "");
         emailString.setText(s1);
 
-        // lab 3 button login to give intent to go next activity ( ProfileActivity)
+
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -76,12 +86,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Menu_Toolbar_Main:
                 Intent goToMainPage = new Intent(MainActivity.this,ActivitySelection.class);
                 MainActivity.this.startActivity(goToMainPage);
-                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Page, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Help:
-                // alert dailog here
-
-
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.Alert_Title_Help_Login))
+                        .setMessage(getString(R.string.Alert_Message_Help_Login))
+                        .setNeutralButton(getString(R.string.Alert_Neutral_Button), null)
+                        .create();
+                dialog.show();
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Favourites:
@@ -100,9 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Logout:
-                Intent goToLogin = new Intent(MainActivity.this,MainActivity.class);
-                MainActivity.this.startActivity(goToLogin);
-                Toast.makeText(getApplicationContext(),R.string.Show_Message_Logged_Out,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_is_Logged_Out_Activity,Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
@@ -114,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Menu_Nav_Main:
                 Intent goToMainPage = new Intent(MainActivity.this,ActivitySelection.class);
                 MainActivity.this.startActivity(goToMainPage);
-                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Activity, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_Main_Page, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Nav_Fav_List:
                 Intent goToFavs = new Intent(MainActivity.this,ActivityFavourites.class);
@@ -132,9 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplicationContext(),R.string.Show_Message_Image_Date,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Nav_Logout:
-                Intent goToLogin = new Intent(MainActivity.this,MainActivity.class);
-                MainActivity.this.startActivity(goToLogin);
-                Toast.makeText(getApplicationContext(),R.string.Show_Message_Logged_Out,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),R.string.Show_Message_is_Logged_Out_Activity,Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;

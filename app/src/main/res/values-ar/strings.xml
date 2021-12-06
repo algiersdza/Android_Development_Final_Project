@@ -10,7 +10,7 @@
     <string name="Show_Text_Image_Of_Day">صورة اليوم</string>
     <string name="Prompt_Submit_Button">إرسال</string>
     <string name="Show_Text_Enter_Date">أدخل التاريخ</string>
-    <string name="ddmmyy">"dd/mm/yy"</string>
+    <string name="yyyy_mm_dd">yyyy-mm-dd</string>
     <string name="Show_Text_Date">"تاريخ: "</string>
     <string name="Show_Text_Save">حفظ</string>
     <string name="Show_Message_Saved_To_Favourites">تم الحفظ في قائمة المفضلة </string>
@@ -29,13 +29,37 @@
     <string name="Other_Branch"> أشياء أخرى ممتعة </string>
 
     <!-- Toast messages for toolbars and navigation -->
-    <string name="Show_Message_Main_Activity">مرحبًا بك في الصفحة الرئيسية </string>
+    <string name="Show_Message_Main_Page">مرحبًا بك في الصفحة الرئيسية </string>
     <string name="Show_Message_Favourites">فتح قائمة المفضلة </string>
     <string name="Show_Message_Image_Date">صورة اليوم التي تم بدء تشغيلها </string>
     <string name="Show_Message_Random_Image">بدء صورة عشوائية </string>
     <string name="Show_Message_Help_alert">بدء المساعدة! </string>
     <string name="Show_Activity_Currently">ما هو النشاط؟ </string>
     <string name="Show_Message_Logged_Out"> تم تسجيل الخروج بنجاح! </string>
+    <!--  Toast messages if you are on the same activity  -->
+    <string name="Show_Message_is_Main_Page">أنت في الصفحة الرئيسية بالفعل! </string>
+    <string name="Show_Message_is_Selection_Activity">أنت في صفحة التحديد بالفعل! </string>
+    <string name="Show_Message_is_Image_Date">أنت في صورة صفحة اليوم بالفعل! </string>
+    <string name="Show_Message_is_Favorites_Activity">أنت في الصفحة المفضلة بالفعل! </string>
+    <string name="Show_Message_is_Random_Activity">أنت في صفحة الصورة العشوائية بالفعل! </string>
+    <string name="Show_Message_is_Logged_Out_Activity">لقد تم تسجيل خروجك بالفعل! </string>
+
+    <!--Alert Dialog strings -->
+    <!-- Login -->
+    <string name="Alert_Title_Help_Login">مساعدة ناسا - تسجيل الدخول</string>
+    <string name="Alert_Message_Help_Login">1) أدخل تفاصيل تسجيل الدخول الخاصة بك في حقلي اسم المستخدم وكلمة المرور. 2) اضغط على زر تسجيل الدخول لتسجيل الدخول.</string>
+    <string name="Alert_Neutral_Button">نعم</string>
+    <!-- Activity Selection -->
+    <string name="Alert_Title_Help_AS">مساعدة ناسا - صورة البحث اليوم</string>
+    <string name="Alert_Message_Help_AS">1) أدخل تاريخًا في حقل منتقي التاريخ. 2) اضغط على زر إرسال لاسترداد صورة.</string>
+    <!-- Activity Image Generated -->
+    <string name="Alert_Title_Help_AIG">مساعدة ناسا - صورتك التي تم إنشاؤها</string>
+    <string name="Alert_Message_Help_AIG">استمتع بصورة وكالة ناسا للتاريخ الذي اخترته! يمكنك إضافة هذه الصورة إلى قائمة المفضلة الخاصة بك عن طريق النقر فوق مربع الاختيار حفظ.</string>
+    <!-- Activity Favourites -->
+    <string name="Alert_Title_Help_AF">مساعدة ناسا - المفضلة</string>
+    <string name="Alert_Message_Help_AF">لعرض عنصر في المفضلة ، انقر فوق عنصر القائمة. لإضافة عنصر إلى مفضلاتك ، قم بإنشاء صورة على صفحة البحث عن صورة حسب التاريخ في قائمة الدرج في الجزء العلوي الأيسر من شريط الأدوات.</string>
+
+
 
     <!-- strings for main activity (login) -->
     <string name="prompt_email">أدخل عنوان بريدك الإلكتروني: </string>
@@ -43,6 +67,11 @@
     <string name="prompt_password">اكتب كلمة المرور الخاصة بك: </string>
     <string name="action_login">تسجيل الدخول </string>
     <string name="Prompt_Go_To_Logout">تسجيل خروج </string>
+
+
+    <string name="Show_Message_Date_Selected_Is">التاريخ المحدد هو: </string>
+    <string name="Show_Text_nonHD">محدد موقع المعلومات غير عالي الدقة للصور هو: </string>
+    <string name="Show_Text_HD">محدد موقع المعلومات ذو الدقة العالية للصور هو: </string>
 
 
 </resources>

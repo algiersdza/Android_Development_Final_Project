@@ -6,13 +6,14 @@ and Mimi Dib
 This application will accept a date and retrieve an image from "NASA Image of the day" web servers.
 This application supports arabic language interface.
 
-# TODO list features as they are completed
-navigate to respective activities from navbar and toolbar
-1) go to main page(ActivitySelection)
-2) go to image finder(ActivtyImageGen (seperate date selection / or go again / if from nav bar load a last image?
-3) go to random image selector ( generates a random image from a random date)
-4) go to favourite images
-5) logout (go to login page, MainActivity)
-6) parse Nasa for image
+# Can access ActivityImageGen freely but, it will reject to start an HTTP request if a date is not entered from the Selection Activity.
+
+What is completed on this build milestone 2
+- [x] The software must have at least 4 or more activities. Your activity must be accessible by selecting a graphical icon from a Toolbar, and NavigationDrawer. 
+  The top navigation layout should have the Activity’s title, and a version number.
+- [x] Each activity must have a help menu item that displays an AlertDialog with instructions for how to use the interface.
+- [x] There must be at least 1 other language supported by your Activity. Please use Canadian French as the secondary language if you do not you know a language other than English.
+- [x] When retrieving data from an http server, the activity must use an AsyncTask.
+
 
 
