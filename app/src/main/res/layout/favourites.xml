@@ -18,9 +18,10 @@
 
         <ListView
             android:id="@+id/listView1"
-            android:layout_below="@+id/ToolBar_ID"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ToolBar_ID" />
+
 
     </RelativeLayout>
 

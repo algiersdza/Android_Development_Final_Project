@@ -1,6 +1,9 @@
 package com.example.cst2335_final_project;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -35,7 +38,9 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
     TextView whatActivityText;
+    ListView listView;
     private static List<FavourtiesList> favsList = new ArrayList<>();
+    private SQLiteDatabase sqLiteDatabase;
 
 
 
@@ -58,16 +63,24 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         //Favourites ListView
-        ListView favListView;
-        favListView = (ListView)findViewById(R.id.listView1);
-
-        //set the adapter to populate listview
+        listView = findViewById(R.id.listView1);
         MyListAdapter myListAdapter = new MyListAdapter();
+        listView.setAdapter(myListAdapter);
+        sqLiteDatabase = new MyOpener(this).getWritableDatabase();
 
+        //load from db
+        favsList = loadDataFromDatabase(sqLiteDatabase);
+        if (!favsList.isEmpty()){
+            myListAdapter.notifyDataSetChanged();
+        }
 
     }
 
-
+    /**
+     *
+     * @param menu
+     * @return navbar
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater menuInflater = getMenuInflater();
@@ -158,27 +171,52 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         }
     }
 
+    /**
+     *
+     * @param db
+     * @return
+     */
+
+    private List<FavourtiesList> loadDataFromDatabase(SQLiteDatabase db) {
+        Cursor c = db.query(MyOpener.TABLE_NAME, null, null, null, null, null, null);
+        List<FavourtiesList> results = new ArrayList<>();
+
+        while (c.moveToNext()) {
+            results.add(new MyListAdapter(c.getLong(c.getColumnIndex(MyOpener.COL_ID)), c.getString(c.getColumnIndex(MyOpener.COL_DATE)), c.getBlob(c.getColumnIndex(MyOpener.COL_IMAGE)) == 1));
+        }
+
+        return results;
+    }
+
+
+    /**
+     * Adapter
+     */
     private class MyListAdapter extends BaseAdapter {
 
 
         @Override
         public int getCount() {
-            return 0;
+            return favsList.size();
         }
 
         @Override
-        public Object getItem(int i) {
-            return null;
+        public Object getItem(int position) {
+            return favsList.get(position);
         }
 
         @Override
-        public long getItemId(int i) {
-            return 0;
+        public long getItemId(int position) {
+            return position;
         }
 
         @Override
-        public View getView(int i, View view, ViewGroup viewGroup) {
-            return null;
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = getLayoutInflater();
+            FavourtiesList msg = favsList.get(position);
+            View view = inflater.inflate(R.layout.list_row,parent,false);
+            //((TextView) view.findViewById(R.id.Text_List_lab4)).setText(msg.text);
+            return view;
         }
     }
 
