@@ -8,13 +8,15 @@ This application supports arabic language interface.
 
 ## NOT COMPLETED
 
-# what is missing?
-- checkbox save
-- database creation not tested
-- image implementation of saving into database
-- inner class for date and image saving
+What is completed?
+-[x] image save
+-[ ] delete image
+-[ ] random generator
+-[ ] alert dialog on listview items ( get id or delete)
+-[ ] fragment on listview items
 
-* byte [] in java and blob datatype in sqlite for image
-* use bitmap factory to save
+what new additions?
+- work on saving image with title as well not just date
+
 
 

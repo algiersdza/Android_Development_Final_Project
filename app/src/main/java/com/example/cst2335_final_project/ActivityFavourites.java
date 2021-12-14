@@ -3,7 +3,7 @@ package com.example.cst2335_final_project;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,9 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +24,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +36,7 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
     ActionBarDrawerToggle actionBarDrawerToggle;
     TextView whatActivityText;
     ListView listView;
-    private static List<FavourtiesList> favsList = new ArrayList<>();
+    private static List<FavouritesList> favsList = new ArrayList<>();
     private SQLiteDatabase sqLiteDatabase;
 
 
@@ -162,13 +159,34 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         return true;
     }
 
-    //TODO favourites list
-    private class FavourtiesList {
+    /**
+     * inner class FavouritesList
+     */
+    //TODO favourites list favourites
+    private static class FavouritesList {
+        private long id = -1L;
         private final String text;
+        private final Bitmap bitmapImageConv;
 
-        private FavourtiesList(String text) {
+        private FavouritesList(long id, String text, Bitmap bitmapImageConv){
+            this.id = id;
             this.text = text;
+            this.bitmapImageConv = bitmapImageConv;
         }
+
+        private FavouritesList(String text, Bitmap bitmapImageConv) {
+            this.text = text;
+            this.bitmapImageConv = bitmapImageConv;
+        }
+
+        //delete from database
+        protected void deleteImage(SQLiteDatabase sqLiteDatabase){
+            if (this.id != -1L){
+                sqLiteDatabase.delete(MyOpener.TABLE_NAME,String.format("%s = ?",MyOpener.COL_ID), new String[]{Long.toString(this.id)});
+            }
+            this.id = -1L;
+        }
+
     }
 
     /**
@@ -177,14 +195,14 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
      * @return
      */
 
-    private List<FavourtiesList> loadDataFromDatabase(SQLiteDatabase db) {
+    private List<FavouritesList> loadDataFromDatabase(SQLiteDatabase db) {
         Cursor c = db.query(MyOpener.TABLE_NAME, null, null, null, null, null, null);
-        List<FavourtiesList> results = new ArrayList<>();
-
-        while (c.moveToNext()) {
-            results.add(new MyListAdapter(c.getLong(c.getColumnIndex(MyOpener.COL_ID)), c.getString(c.getColumnIndex(MyOpener.COL_DATE)), c.getBlob(c.getColumnIndex(MyOpener.COL_IMAGE)) == 1));
+        List<FavouritesList> results = new ArrayList<>();
+        while (c.moveToNext()){
+            byte[] bytedImage = c.getBlob(c.getColumnIndex(MyOpener.COL_IMAGE));
+            Bitmap initConv = Converter.getImage(bytedImage);
+            results.add(new FavouritesList(c.getLong(c.getColumnIndex(MyOpener.COL_ID)),c.getString(c.getColumnIndex(MyOpener.COL_DATE)),initConv));
         }
-
         return results;
     }
 
@@ -213,9 +231,10 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             LayoutInflater inflater = getLayoutInflater();
-            FavourtiesList msg = favsList.get(position);
+            FavouritesList favouritesList = favsList.get(position);
             View view = inflater.inflate(R.layout.list_row,parent,false);
-            //((TextView) view.findViewById(R.id.Text_List_lab4)).setText(msg.text);
+            ((TextView) view.findViewById(R.id.Text_List_Row_Text)).setText(favouritesList.text);
+            ((ImageView) view.findViewById(R.id.Image_List_Row_Image)).setImageBitmap(favouritesList.bitmapImageConv);
             return view;
         }
     }

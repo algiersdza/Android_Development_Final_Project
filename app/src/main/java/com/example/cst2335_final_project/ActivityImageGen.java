@@ -1,19 +1,24 @@
 package com.example.cst2335_final_project;
 
+import static com.example.cst2335_final_project.MyOpener.COL_DATE;
+import static com.example.cst2335_final_project.MyOpener.COL_IMAGE;
+import static com.example.cst2335_final_project.MyOpener.TABLE_NAME;
+
+
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -37,7 +42,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class ActivityImageGen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -49,8 +53,12 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     TextView yyyymmdd, whatActivityText, imageTitle,dummyHD,dummyNonHD;
     public static ProgressBar progressBar;
     ImageView imageOfDay;
-    CheckBox favCheck;
-    Button doneButton;
+    //save to fav variables
+    Bitmap bitmapImage;
+    String dbNameDate;
+    SQLiteDatabase sqLiteDatabase;
+
+    Button doneButton,favBtn;
     public final static String nasaURL1 = "https://api.nasa.gov/planetary/apod?api_key=";
     public final static String nasaURL2 = "&date=";
     public final static String urlKey ="GtIt36FWCP5fvOaaJVjUAiEqTmlNSmZqoH6jAT7L";
@@ -83,7 +91,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
 //            Log.e(TAG,"the date is: "+userDate);
         }
         // Date textview
-        //TODO edit TextView yyyy_mm_dd to take user chosen date using onActivityResult
+        //TODOFINISHED edit TextView yyyy_mm_dd to take user chosen date using onActivityResult
         yyyymmdd = findViewById(R.id.yyyy_mm_dd);
         imageTitle = findViewById(R.id.imageOfTheDay);
         dummyHD = findViewById(R.id.TextView_Img_Gen_HD_Dummy);
@@ -92,19 +100,18 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
         //image of the day
         imageOfDay = findViewById(R.id.image1);
 
-
-        //favourites Snackbar Checkbox -> Saved/Unsaved to Favourites
-        favCheck = findViewById(R.id.favBtn);
-        favCheck.setOnCheckedChangeListener((CompoundButton cb, boolean b) -> {
-            if (b){//save
-                Snackbar.make(favCheck, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG)
-                        .setAction("Undo", click -> favCheck.setChecked(!b)).show();
-            }else{
-                Snackbar.make(favCheck, getString(R.string.Show_Message_Not_Saved_To_Favourites), Snackbar.LENGTH_LONG)
-                        .setAction("Undo", click -> favCheck.setChecked(!b)).show();
+        //TODO save button to send image to database with date as name
+        //favourites Snackbar Button -> Saved/Unsaved to Favourites
+        favBtn = findViewById(R.id.Button_Generate_Save_Image);
+        favBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                byte[] convertedImage = Converter.getBytes(bitmapImage);
+                addToDatabase(dbNameDate,convertedImage);
+                Snackbar.make(favBtn, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
             }
         });
-
+//        Snackbar.make(favBtn, getString(R.string.Show_Message_Not_Saved_To_Favourites), Snackbar.LENGTH_LONG)
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,8 +123,8 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
         //execute the AsyncTask
 
         if (userDate != null){
-            ImageQuery imageQueryObj = new ImageQuery();
-            imageQueryObj.execute(nasaURL1+urlKey+nasaURL2+userDate);
+            ImageQuery imageQueryFromSelectionActivity = new ImageQuery();
+            imageQueryFromSelectionActivity.execute(nasaURL1+urlKey+nasaURL2+userDate);
 //        Log.e(TAG,"the full URL is: "+nasaURL1+urlKey+nasaURL2+userDate);
         }
 
@@ -206,7 +213,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     }
 
     private class ImageQuery extends AsyncTask<String, Integer, String>{
-        //TODO should this stay a String or to a Date variable to order by date later
+        //TODO FINISHED should this stay a String or to a Date variable to order by date later
         private String Full_URL = nasaURL1+urlKey+nasaURL2+userDate;
         private String title;
         private String HDURL;
@@ -279,11 +286,23 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             yyyymmdd.setText(JSON_Date);
+            dbNameDate = JSON_Date;
             imageTitle.setText(title);
             dummyNonHD.setText(nonHDURL);
             dummyHD.setText(HDURL);
             imageOfDay.setImageBitmap(image);
+            bitmapImage = image;
             progressBar.setVisibility(View.INVISIBLE);
         }
     }
+
+    // save the image to database method
+    public void addToDatabase(String date, byte[] byteImage) throws SQLiteException{
+        sqLiteDatabase = new MyOpener(this).getWritableDatabase();
+        ContentValues cv = new  ContentValues();
+        cv.put(COL_DATE, date);
+        cv.put(COL_IMAGE, byteImage);
+        sqLiteDatabase.insert(TABLE_NAME, null, cv );
+    }
+
 }

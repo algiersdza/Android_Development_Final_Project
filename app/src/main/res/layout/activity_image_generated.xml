@@ -36,23 +36,37 @@
             android:layout_marginTop="20dp"
             android:text="@string/Show_Text_Image_Of_Day" />
 
-        <CheckBox
-            android:id="@+id/favBtn"
-            android:layout_width="32dp"
-            android:layout_height="wrap_content"
-            android:layout_alignTop="@id/image1"
-            android:layout_marginTop="0dp"
-            android:layout_toEndOf="@id/image1" />
 
-        <TextView
-            android:id="@+id/save"
+        <Button
+            android:id="@+id/Button_Generate_Save_Image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@id/favBtn"
-            android:layout_marginLeft="1dp"
-            android:layout_marginBottom="15dp"
-            android:layout_toRightOf="@id/favBtn"
+            android:layout_below="@+id/image1"
+            android:layout_alignStart="@id/image1"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="5dp"
             android:text="@string/Show_Text_Save" />
+
+
+
+
+<!--        <CheckBox-->
+<!--            android:id="@+id/favBtn"-->
+<!--            android:layout_width="32dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignTop="@id/image1"-->
+<!--            android:layout_marginTop="0dp"-->
+<!--            android:layout_toEndOf="@id/image1" />-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/save"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignBottom="@id/Button_Generate_Save_Image"-->
+<!--            android:layout_marginLeft="1dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            android:layout_toRightOf="@id/Button_Generate_Save_Image"-->
+<!--            android:text="@string/Show_Text_Save" />-->
 
         <ImageView
             android:id="@+id/image1"
@@ -88,9 +102,8 @@
             android:id="@+id/TextView_Img_Gen_nonHD"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image1"
+            android:layout_below="@id/Button_Generate_Save_Image"
             android:layout_alignStart="@id/image1"
-            android:layout_marginLeft="35dp"
             android:text="@string/Show_Text_nonHD" />
 
         <TextView
@@ -99,8 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/TextView_Img_Gen_nonHD_Dummy"
             android:layout_alignStart="@id/image1"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginTop="15dp"
             android:text="@string/Show_Text_HD" />
 
         <TextView
@@ -109,8 +121,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/TextView_Img_Gen_nonHD"
             android:layout_marginTop="10dp"
-            android:textAlignment="center"
             android:autoLink="web"
+            android:textAlignment="center"
             android:textSize="10dp" />
         <TextView
             android:id="@+id/TextView_Img_Gen_HD_Dummy"
@@ -144,7 +156,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:text="@string/Show_Text_Done" />
+            android:text="@string/Show_Text_New_Date" />
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
