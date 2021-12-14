@@ -4,23 +4,52 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/cardview_shadow_start_color">
+        android:background="@color/cardview_shadow_start_color"
+        >
 
         <ImageView
-        android:id="@+id/Image_List_Row_Image"
-        android:layout_width="50dp"
-        android:layout_height="70dp"
-        android:src="@drawable/nasa_trans"
-        />
+            android:id="@+id/Image_List_Row_Image"
+            android:layout_width="50dp"
+            android:layout_height="70dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/nasa_trans" />
         <TextView
-            android:id="@+id/Text_List_Row_Text"
+            android:id="@+id/Text_List_Row_Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/yyyy_mm_dd"
+            android:text="@string/Show_Text_Title"
+            android:layout_alignParentTop="true"
             />
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/Text_List_Row_Date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="27dp"
+            android:text="@string/Show_Text_Date"
+
+            />
+
+        <TextView
+            android:id="@+id/Text_List_Row_Title_Editable"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Text_List_Row_Title"
+            android:layout_alignParentStart="true"
+            android:text="@string/Show_Text_Image_Of_Day"/>
+
+        <TextView
+            android:id="@+id/Text_List_Row_Date_Editable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Text_List_Row_Date"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:text="@string/yyyy_mm_dd" />
+
+    </RelativeLayout>
 </LinearLayout>

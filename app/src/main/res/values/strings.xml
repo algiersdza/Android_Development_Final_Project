@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CST2335 Final Project</string>
-    <string name="app_version">Alpha 0.75</string>
+    <string name="app_version">Version 1.0</string>
     <string name="Author_1">Mimi Dib</string>
     <string name="Author_2">Ibrahim Hermouche</string>
     <string name="NASA_Title_Header">NASA</string>
@@ -8,7 +8,7 @@
     <string name="Prompt_Submit_Button">Submit</string>
     <string name="Show_Text_Enter_Date">Enter a date</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
-    <string name="Show_Text_Date">"Date: "</string>
+    <string name="Show_Text_Date">Date:</string>
     <string name="Show_Text_Save">Save</string>
     <string name="Show_Message_Saved_To_Favourites">Saved to Favourites</string>
     <string name="Show_Message_Not_Saved_To_Favourites">Unsaved from Favourites</string>
@@ -55,7 +55,11 @@
     <!-- Activity Favourites -->
     <string name="Alert_Title_Help_AF">NASA Help - Favourites</string>
     <string name="Alert_Message_Help_AF">To view an item in your favourites, click a list item. To add an item to your favourites, generate an image on the \'Find an image by Date\' page in your drawer menu at the top left of the toolbar.</string>
-
+    <string name="Prompt_Delete">Do you want to delete this?</string>
+    <string name="Prompt_Delete_Message_Position">The selected row is: </string>
+    <string name="Prompt_Delete_Message_ID">The database id is: </string>
+    <string name="Prompt_Positive">Yes</string>
+    <string name="Prompt_Negative">No</string>
 
 
     <!-- strings for main activity (login) -->
@@ -69,6 +73,17 @@
     <string name="Show_Message_Date_Selected_Is">The date selected is: </string>
     <string name="Show_Text_nonHD">The non-hd image URL is: </string>
     <string name="Show_Text_HD">The HD Image URL is: </string>
+    <string name="Show_Text_Title">Title:</string>
+
+    <!-- strings for fragment -->
+    <string name="Show_ID">ID=</string>
+    <string name="Show_Title_Here">Title Here</string>
+    <string name="Show_Date_Here">Date Here</string>
+    <string name="Prompt_Hide">HIDE</string>
+
+    <!-- strings for random image-->
+    <string name="Show_Random_Intro">Click on Im Feeling Lucky!</string>
+    <string name="im_feeling_lucky">Im Feeling Lucky!</string>
 
 
 </resources>

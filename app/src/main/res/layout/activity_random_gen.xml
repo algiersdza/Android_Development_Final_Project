@@ -18,13 +18,69 @@
         />
 
         <TextView
+            android:id="@+id/TextView_Random_Intro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/ToolBar_ID"
-            android:textSize="50dp"
-            android:text="do things here"/>
+            android:layout_centerInParent="true"
+            android:text="@string/Show_Random_Intro"
+            android:textSize="20dp" />
 
-        <!-- TODO design here -->
+        <Button
+            android:id="@+id/Button_Random_Lucky_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TextView_Random_Intro"
+            android:layout_centerInParent="true"
+            android:text="@string/im_feeling_lucky" />
+
+        <Button
+            android:id="@+id/Button_Random_Save_Button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Button_Random_Lucky_Button"
+            android:layout_centerInParent="true"
+            android:text="@string/Show_Text_Save"/>
+
+        <TextView
+            android:id="@+id/TextView_Random_Title_Editable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_below="@id/Button_Random_Save_Button"
+            android:layout_centerHorizontal="true"
+            android:text="@string/Show_Text_Image_Of_Day"
+            />
+
+        <TextView
+            android:id="@+id/TextView_Random_Date_Editable"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/Image_Random_Image"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:text="@string/yyyy_mm_dd"
+            />
+
+        <ImageView
+            android:id="@+id/Image_Random_Image"
+            android:layout_width="200dp"
+            android:layout_height="210dp"
+            android:layout_marginTop="100dp"
+            android:layout_below="@id/Button_Random_Save_Button"
+            android:layout_centerHorizontal="true"
+            />
+
+        <ProgressBar
+            android:id="@+id/Progress_Random_Progress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible" />
+
 
     </RelativeLayout>
 

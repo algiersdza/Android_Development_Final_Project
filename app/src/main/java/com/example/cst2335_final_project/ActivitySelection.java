@@ -83,10 +83,9 @@ public class ActivitySelection extends AppCompatActivity implements NavigationVi
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, month);
                 myCalendar.set(Calendar.DAY_OF_MONTH, day);
-                The_yyyy_mm_dd_Date = year+"-"+month+"-"+day;
+                The_yyyy_mm_dd_Date = year+"-"+(month+1)+"-"+day;
                 editDate.setText(The_yyyy_mm_dd_Date);
 //                Log.e(TAG, "onDateSet: "+The_yyyy_mm_dd_Date);
-                //ActivitySelection.this.updateLabel();
             }
         };
         //on click edit text bring DatePickerDialog
@@ -114,8 +113,6 @@ public class ActivitySelection extends AppCompatActivity implements NavigationVi
         //log
         Log.e(TAG, "*****Inside OnCreate()*****");
     }
-
-    // ibra starts here
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
@@ -195,15 +192,4 @@ public class ActivitySelection extends AppCompatActivity implements NavigationVi
         }
         return true;
     }
-
-
-
-//    //update label method
-//    private void updateLabel(){
-//        String dateFormat = "yyyy-MM-dd";
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dateFormat, Locale.US);
-//        editDate.setText(simpleDateFormat.format(myCalendar.getTime()));
-//        Log.e(TAG, "The myCalender.getTime() gives: "+myCalendar.getTime());
-//        Log.e(TAG, "The myCalender.getTime().toString() gives: "+myCalendar.getTime().toString());
-//    }
 }

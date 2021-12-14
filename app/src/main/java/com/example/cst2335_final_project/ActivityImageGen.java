@@ -2,6 +2,7 @@ package com.example.cst2335_final_project;
 
 import static com.example.cst2335_final_project.MyOpener.COL_DATE;
 import static com.example.cst2335_final_project.MyOpener.COL_IMAGE;
+import static com.example.cst2335_final_project.MyOpener.COL_NAME;
 import static com.example.cst2335_final_project.MyOpener.TABLE_NAME;
 
 
@@ -53,9 +54,10 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     TextView yyyymmdd, whatActivityText, imageTitle,dummyHD,dummyNonHD;
     public static ProgressBar progressBar;
     ImageView imageOfDay;
+
     //save to fav variables
     Bitmap bitmapImage;
-    String dbNameDate;
+    String dbNameDate, favTitle;
     SQLiteDatabase sqLiteDatabase;
 
     Button doneButton,favBtn;
@@ -100,14 +102,14 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
         //image of the day
         imageOfDay = findViewById(R.id.image1);
 
-        //TODO save button to send image to database with date as name
+        //TODOfinished save button to send image to database with date as name
         //favourites Snackbar Button -> Saved/Unsaved to Favourites
         favBtn = findViewById(R.id.Button_Generate_Save_Image);
         favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 byte[] convertedImage = Converter.getBytes(bitmapImage);
-                addToDatabase(dbNameDate,convertedImage);
+                addToDatabase(favTitle,dbNameDate,convertedImage);
                 Snackbar.make(favBtn, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
             }
         });
@@ -288,6 +290,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
             yyyymmdd.setText(JSON_Date);
             dbNameDate = JSON_Date;
             imageTitle.setText(title);
+            favTitle = title;
             dummyNonHD.setText(nonHDURL);
             dummyHD.setText(HDURL);
             imageOfDay.setImageBitmap(image);
@@ -297,9 +300,10 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     }
 
     // save the image to database method
-    public void addToDatabase(String date, byte[] byteImage) throws SQLiteException{
+    public void addToDatabase(String name, String date, byte[] byteImage) throws SQLiteException{
         sqLiteDatabase = new MyOpener(this).getWritableDatabase();
         ContentValues cv = new  ContentValues();
+        cv.put(COL_NAME, name);
         cv.put(COL_DATE, date);
         cv.put(COL_IMAGE, byteImage);
         sqLiteDatabase.insert(TABLE_NAME, null, cv );

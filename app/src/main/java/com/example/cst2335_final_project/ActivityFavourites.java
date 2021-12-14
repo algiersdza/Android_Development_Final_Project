@@ -38,6 +38,11 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
     ListView listView;
     private static List<FavouritesList> favsList = new ArrayList<>();
     private SQLiteDatabase sqLiteDatabase;
+    public static final String ITEM_ID = "ID";
+    public static final String TEXT_TITLE ="TITLE";
+    public static final String TEXT_DATE ="DATE";
+    public static final String BYTE_IMAGE ="IMAGE";
+    public static final String BITMAP_IMAGE ="BIT_IMAGE";
 
 
 
@@ -50,7 +55,7 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         toolbar = findViewById(R.id.ToolBar_ID);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.DrawerLayout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.Show_Drawer_Open,R.string.Show_Drawer_Close);
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.Show_Drawer_Open, R.string.Show_Drawer_Close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
         navigationView = findViewById(R.id.Nav_View);
@@ -67,9 +72,40 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
 
         //load from db
         favsList = loadDataFromDatabase(sqLiteDatabase);
-        if (!favsList.isEmpty()){
+        if (!favsList.isEmpty()) {
             myListAdapter.notifyDataSetChanged();
         }
+
+        // should start alertdailog on looooooong press
+        listView.setOnItemLongClickListener((p, b, position, id) -> {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle(getString(R.string.Prompt_Delete))
+                    .setMessage(getString(R.string.Prompt_Delete_Message_Position) + " " + position + "\n" + getString(R.string.Prompt_Delete_Message_ID) + " " + id)
+                    .setPositiveButton(R.string.Prompt_Positive, (click, arg) -> {
+                        favsList.remove(position).deleteImage(sqLiteDatabase);
+                        myListAdapter.notifyDataSetChanged();
+                    })
+                    .setNegativeButton(R.string.Prompt_Negative,(click, arg)->{ })
+                    .create().show();
+            return true;
+        });
+
+        // should start fragment on tap press
+        listView.setOnItemClickListener((list,view,position,id)->{
+            FavouritesList favouritesList = favsList.get(position);
+            Bundle dataToPass = new Bundle();
+            dataToPass.putLong(ITEM_ID,id);
+            dataToPass.putString(TEXT_TITLE, favouritesList.title);
+            dataToPass.putString(TEXT_DATE, favouritesList.date);
+//            dataToPass.putParcelable(BITMAP_IMAGE, favouritesList.bitmapImageConv);
+//            byte[] imageConvToByte = Converter.getBytes(favouritesList.bitmapImageConv);
+//            dataToPass.putByteArray(BYTE_IMAGE,imageConvToByte);
+            Intent nextActivity = new Intent(ActivityFavourites.this, EmptyActivity.class);
+            nextActivity.putExtras(dataToPass);
+            startActivity(nextActivity);
+        });
+
+
 
     }
 
@@ -165,17 +201,20 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
     //TODO favourites list favourites
     private static class FavouritesList {
         private long id = -1L;
-        private final String text;
+        private final String date;
+        private final String title;
         private final Bitmap bitmapImageConv;
 
-        private FavouritesList(long id, String text, Bitmap bitmapImageConv){
+        private FavouritesList(long id, String title, String date, Bitmap bitmapImageConv){
             this.id = id;
-            this.text = text;
+            this.title = title;
+            this.date = date;
             this.bitmapImageConv = bitmapImageConv;
         }
 
-        private FavouritesList(String text, Bitmap bitmapImageConv) {
-            this.text = text;
+        private FavouritesList(String title, String date, Bitmap bitmapImageConv) {
+            this.title = title;
+            this.date = date;
             this.bitmapImageConv = bitmapImageConv;
         }
 
@@ -199,9 +238,10 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
         Cursor c = db.query(MyOpener.TABLE_NAME, null, null, null, null, null, null);
         List<FavouritesList> results = new ArrayList<>();
         while (c.moveToNext()){
+            //get blob from database then convert it very gurd
             byte[] bytedImage = c.getBlob(c.getColumnIndex(MyOpener.COL_IMAGE));
             Bitmap initConv = Converter.getImage(bytedImage);
-            results.add(new FavouritesList(c.getLong(c.getColumnIndex(MyOpener.COL_ID)),c.getString(c.getColumnIndex(MyOpener.COL_DATE)),initConv));
+            results.add(new FavouritesList(c.getLong(c.getColumnIndex(MyOpener.COL_ID)),c.getString(c.getColumnIndex(MyOpener.COL_NAME)),c.getString(c.getColumnIndex(MyOpener.COL_DATE)),initConv));
         }
         return results;
     }
@@ -233,7 +273,8 @@ public class ActivityFavourites extends AppCompatActivity implements NavigationV
             LayoutInflater inflater = getLayoutInflater();
             FavouritesList favouritesList = favsList.get(position);
             View view = inflater.inflate(R.layout.list_row,parent,false);
-            ((TextView) view.findViewById(R.id.Text_List_Row_Text)).setText(favouritesList.text);
+            ((TextView) view.findViewById(R.id.Text_List_Row_Date_Editable)).setText(favouritesList.date);
+            ((TextView) view.findViewById(R.id.Text_List_Row_Title_Editable)).setText(favouritesList.title);
             ((ImageView) view.findViewById(R.id.Image_List_Row_Image)).setImageBitmap(favouritesList.bitmapImageConv);
             return view;
         }

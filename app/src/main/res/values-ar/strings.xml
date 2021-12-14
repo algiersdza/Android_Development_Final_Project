@@ -4,14 +4,14 @@
     <!-- TODO pls cheq ze translasiooonez of ze stringy ibrasan-->
     <!-- TODO translasiooonez of ze stringy is very guuurrrd Mimi-san-->
     <string name="NASA_Title_Header">ناسا</string>
-    <string name="app_version">Alpha 0.75</string>
+    <string name="app_version">Version 1.0</string>
     <string name="Author_1">Mimi Dib</string>
     <string name="Author_2">Ibrahim Hermouche</string>
     <string name="Show_Text_Image_Of_Day">صورة اليوم</string>
     <string name="Prompt_Submit_Button">إرسال</string>
     <string name="Show_Text_Enter_Date">أدخل التاريخ</string>
     <string name="yyyy_mm_dd">yyyy-mm-dd</string>
-    <string name="Show_Text_Date">"تاريخ: "</string>
+    <string name="Show_Text_Date">تاريخ: </string>
     <string name="Show_Text_Save">حفظ</string>
     <string name="Show_Message_Saved_To_Favourites">تم الحفظ في قائمة المفضلة </string>
     <string name="Show_Message_Not_Saved_To_Favourites">إلغاء الحفظ من قائمة المفضلة</string>
@@ -59,7 +59,11 @@
     <!-- Activity Favourites -->
     <string name="Alert_Title_Help_AF">مساعدة ناسا - المفضلة</string>
     <string name="Alert_Message_Help_AF">لعرض عنصر في المفضلة ، انقر فوق عنصر القائمة. لإضافة عنصر إلى مفضلاتك ، قم بإنشاء صورة على صفحة البحث عن صورة حسب التاريخ في قائمة الدرج في الجزء العلوي الأيسر من شريط الأدوات.</string>
-
+    <string name="Prompt_Delete">هل تريد حذف هذا؟</string>
+    <string name="Prompt_Delete_Message_Position">الصف المحدد هو: </string>
+    <string name="Prompt_Delete_Message_ID">معرف قاعدة البيانات هو: </string>
+    <string name="Prompt_Positive">نعم</string>
+    <string name="Prompt_Negative">لا</string>
 
 
     <!-- strings for main activity (login) -->
@@ -73,6 +77,17 @@
     <string name="Show_Message_Date_Selected_Is">التاريخ المحدد هو: </string>
     <string name="Show_Text_nonHD">محدد موقع المعلومات غير عالي الدقة للصور هو: </string>
     <string name="Show_Text_HD">محدد موقع المعلومات ذو الدقة العالية للصور هو: </string>
+    <string name="Show_Text_Title">عنوان: </string>
+
+    <!-- strings for fragment -->
+    <string name="Show_ID">المعرف= </string>
+    <string name="Show_Title_Here">رسالة هنا </string>
+    <string name="Show_Date_Here">التاريخ هنا </string>
+    <string name="Prompt_Hide">إخفاء </string>
+
+    <!-- strings for random image-->
+    <string name="Show_Random_Intro">انقر على أنا أشعر بأنني محظوظ! </string>
+    <string name="im_feeling_lucky">أشعر بأنني محظوظ! </string>
 
 
 </resources>

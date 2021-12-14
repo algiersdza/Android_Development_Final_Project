@@ -9,6 +9,7 @@ public class MyOpener extends SQLiteOpenHelper {
     protected final static int VERSION_NUMBER = 1;
     final static String TABLE_NAME = "FAVOURITE";
     final static String COL_ID = "FavouriteID";
+    final static String COL_NAME = "Name";
     final static String COL_DATE = "Date";
     final static String COL_IMAGE = "ImageBlob";
 
@@ -20,7 +21,7 @@ public class MyOpener extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s blob);", TABLE_NAME, COL_ID, COL_DATE, COL_IMAGE));
+        sqLiteDatabase.execSQL(String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY AUTOINCREMENT, %s text, %s text, %s blob);", TABLE_NAME, COL_ID, COL_NAME, COL_DATE, COL_IMAGE));
 
     }
 

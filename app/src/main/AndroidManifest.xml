@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CST2335_Final_Project">
         <activity
+            android:name=".EmptyActivity"
+            android:exported="true" />
+        <activity
             android:name=".ActivityRandomGen"
             android:exported="true" />
         <activity
@@ -27,15 +30,15 @@
         <activity
             android:name=".ActivityFavourites"
             android:exported="true"
-            android:hardwareAccelerated="true"></activity>
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ActivityImageGen"
             android:exported="true"
-            android:hardwareAccelerated="true"></activity>
+            android:hardwareAccelerated="true" />
         <activity
             android:name=".ActivitySelection"
             android:exported="true"
-            android:hardwareAccelerated="true"></activity>
+            android:hardwareAccelerated="true" />
     </application>
 
 </manifest>
