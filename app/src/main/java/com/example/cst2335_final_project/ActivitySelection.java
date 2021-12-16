@@ -85,7 +85,6 @@ public class ActivitySelection extends AppCompatActivity implements NavigationVi
                 myCalendar.set(Calendar.DAY_OF_MONTH, day);
                 The_yyyy_mm_dd_Date = year+"-"+(month+1)+"-"+day;
                 editDate.setText(The_yyyy_mm_dd_Date);
-//                Log.e(TAG, "onDateSet: "+The_yyyy_mm_dd_Date);
             }
         };
         //on click edit text bring DatePickerDialog
@@ -103,15 +102,18 @@ public class ActivitySelection extends AppCompatActivity implements NavigationVi
         goImgGensubmit.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                //go to activity_generate.xml with date data from editText
-                Intent imageIntent = new Intent(ActivitySelection.this, ActivityImageGen.class);
-                imageIntent.putExtra("the-date",The_yyyy_mm_dd_Date);
-                editDate.setText("");
-                ActivitySelection.this.startActivity(imageIntent);
+                if (!editDate.getText().toString().matches("")){
+                    //go to activity_generate.xml with date data from editText
+                    Intent imageIntent = new Intent(ActivitySelection.this, ActivityImageGen.class);
+                    imageIntent.putExtra("the-date",The_yyyy_mm_dd_Date);
+                    editDate.setText("");
+                    ActivitySelection.this.startActivity(imageIntent);
+                } else {
+                    Toast.makeText(ActivitySelection.this, getString(R.string.Show_Message_No_Date_Selected), Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-        //log
-        Log.e(TAG, "*****Inside OnCreate()*****");
     }
 
     @Override

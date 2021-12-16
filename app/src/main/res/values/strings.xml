@@ -17,6 +17,8 @@
     <string name="Show_Drawer_Open">Drawer slide opened</string>
     <string name="Show_Drawer_Close">Drawer slide closed</string>
     <string name="Login_Success_Message">Login successful</string>
+    <string name="Show_Message_No_Date_Selected">Please enter/select a date!</string>
+    <string name="Show_Message_No_Image_Selected">There is no image to save!</string>
 
     <!-- strings for menus -->
     <string name="Prompt_Go_To_Main_Activity">Main Page</string>
@@ -51,7 +53,8 @@
     <string name="Alert_Message_Help_AS">1) Enter a date in the date picker field i.e. \'yyyy-mm-dd\'.\n2) Tap the \'Submit\' button to retrieve an image.</string>
     <!-- Activity Image Generated -->
     <string name="Alert_Title_Help_AIG">NASA Help - Your generated image</string>
-    <string name="Alert_Message_Help_AIG">Enjoy the NASA image of your chosen date!\n You can add this image to your list of Favourites by tapping the \'Save\' checkbox.</string>
+    <string name="Alert_Message_Help_AIG">Enjoy the NASA image of your chosen date!\n You can add this image to your list of Favourites by clicking the \'Save\' button.</string>
+    <string name="Video_File_Error">Cancelled! That date contains a video file and not an image!</string>
     <!-- Activity Favourites -->
     <string name="Alert_Title_Help_AF">NASA Help - Favourites</string>
     <string name="Alert_Message_Help_AF">To view an item in your favourites, click a list item. To add an item to your favourites, generate an image on the \'Find an image by Date\' page in your drawer menu at the top left of the toolbar.</string>
@@ -61,6 +64,9 @@
     <string name="Prompt_Positive">Yes</string>
     <string name="Prompt_Negative">No</string>
 
+    <!-- Activity Random Image-->
+    <string name="Alert_Title_Help_ARG">NASA Help - Random Image Generator</string>
+    <string name="Alert_Message_Help_ARG">This interface provides you the option to find an image from NASA by randomly selecting a date.\n The Save button saves your random image to your favourites!</string>
 
     <!-- strings for main activity (login) -->
     <string name="prompt_email">Enter your email address:</string>
@@ -84,6 +90,7 @@
     <!-- strings for random image-->
     <string name="Show_Random_Intro">Click on Im Feeling Lucky!</string>
     <string name="im_feeling_lucky">Im Feeling Lucky!</string>
+    <string name="Show_Random_Date_Message">The random date is: </string>
 
 
 </resources>

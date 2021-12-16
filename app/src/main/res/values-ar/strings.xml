@@ -20,6 +20,8 @@
     <string name="Show_Text_Done">انتهى</string>
     <string name="Show_Text_New_Date">اختر تاريخًا جديدًا </string>
     <string name="Login_Success_Message">تم تسجيل الدخول بنجاح </string>
+    <string name="Show_Message_No_Date_Selected">الرجاء إدخال / تحديد التاريخ!</string>
+    <string name="Show_Message_No_Image_Selected">لا توجد صورة لحفظها! </string>
 
     <!-- strings for menus -->
     <string name="Prompt_Go_To_Main_Activity"> الصفحة الرئيسية </string>
@@ -55,7 +57,8 @@
     <string name="Alert_Message_Help_AS">1) أدخل تاريخًا في حقل منتقي التاريخ. 2) اضغط على زر إرسال لاسترداد صورة.</string>
     <!-- Activity Image Generated -->
     <string name="Alert_Title_Help_AIG">مساعدة ناسا - صورتك التي تم إنشاؤها</string>
-    <string name="Alert_Message_Help_AIG">استمتع بصورة وكالة ناسا للتاريخ الذي اخترته! يمكنك إضافة هذه الصورة إلى قائمة المفضلة الخاصة بك عن طريق النقر فوق مربع الاختيار حفظ.</string>
+    <string name="Alert_Message_Help_AIG">استمتع بصورة وكالة ناسا للتاريخ الذي اخترته! يمكنك إضافة هذه الصورة إلى قائمة المفضلة الخاصة بك عن طريق النقر فوق مربع الاختيار حفظ. </string>
+    <string name="Video_File_Error">ألغيت! ذلك التاريخ يحتوي على ملف فيديو وليس صورة! </string>
     <!-- Activity Favourites -->
     <string name="Alert_Title_Help_AF">مساعدة ناسا - المفضلة</string>
     <string name="Alert_Message_Help_AF">لعرض عنصر في المفضلة ، انقر فوق عنصر القائمة. لإضافة عنصر إلى مفضلاتك ، قم بإنشاء صورة على صفحة البحث عن صورة حسب التاريخ في قائمة الدرج في الجزء العلوي الأيسر من شريط الأدوات.</string>
@@ -64,6 +67,9 @@
     <string name="Prompt_Delete_Message_ID">معرف قاعدة البيانات هو: </string>
     <string name="Prompt_Positive">نعم</string>
     <string name="Prompt_Negative">لا</string>
+    <!-- Activity Random Image-->
+    <string name="Alert_Title_Help_ARG">مساعدة ناسا - مولد صور عشوائي</string>
+    <string name="Alert_Message_Help_ARG">توفر لك هذه الواجهة خيار البحث عن صورة من وكالة ناسا عن طريق تحديد تاريخ عشوائيًا.\n يحفظ الزر "حفظ" صورتك العشوائية في المفضلة!</string>
 
 
     <!-- strings for main activity (login) -->
@@ -88,6 +94,8 @@
     <!-- strings for random image-->
     <string name="Show_Random_Intro">انقر على أنا أشعر بأنني محظوظ! </string>
     <string name="im_feeling_lucky">أشعر بأنني محظوظ! </string>
+    <string name="Show_Random_Date_Message">التاريخ العشوائي هو: </string>
+
 
 
 </resources>

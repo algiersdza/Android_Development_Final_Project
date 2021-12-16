@@ -64,7 +64,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     public final static String nasaURL1 = "https://api.nasa.gov/planetary/apod?api_key=";
     public final static String nasaURL2 = "&date=";
     public final static String urlKey ="GtIt36FWCP5fvOaaJVjUAiEqTmlNSmZqoH6jAT7L";
-    public static String userDate;
+    public static String userDate = null;
 
 
 
@@ -102,15 +102,20 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
         //image of the day
         imageOfDay = findViewById(R.id.image1);
 
-        //TODOfinished save button to send image to database with date as name
+        // save button to send image to database with date as name
         //favourites Snackbar Button -> Saved/Unsaved to Favourites
         favBtn = findViewById(R.id.Button_Generate_Save_Image);
         favBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte[] convertedImage = Converter.getBytes(bitmapImage);
-                addToDatabase(favTitle,dbNameDate,convertedImage);
-                Snackbar.make(favBtn, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
+                if (imageOfDay.getDrawable() != null){
+                    byte[] convertedImage = Converter.getBytes(bitmapImage);
+                    addToDatabase(favTitle,dbNameDate,convertedImage);
+                    Snackbar.make(favBtn, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
+                }else{
+                    Snackbar.make(favBtn, getString(R.string.Show_Message_No_Image_Selected), Snackbar.LENGTH_LONG).show();
+                }
+
             }
         });
 //        Snackbar.make(favBtn, getString(R.string.Show_Message_Not_Saved_To_Favourites), Snackbar.LENGTH_LONG)
@@ -217,6 +222,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
     private class ImageQuery extends AsyncTask<String, Integer, String>{
         //TODO FINISHED should this stay a String or to a Date variable to order by date later
         private String Full_URL = nasaURL1+urlKey+nasaURL2+userDate;
+        private String media_type; // check if its a video or picture
         private String title;
         private String HDURL;
         private String nonHDURL;
@@ -244,26 +250,33 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
                 }
                 String result = sb.toString();
                 JSONObject jsonObject = new JSONObject(result);
-                HDURL = (String) jsonObject.getString("hdurl");
-                publishProgress(50);
-                Thread.sleep(1000);
-                JSON_Date = (String) jsonObject.getString("date");
-                publishProgress(75);
-                Thread.sleep(1000);
-                title = (String) jsonObject.getString("title");
-                nonHDURL = (String) jsonObject.getString("url");
+                media_type = (String) jsonObject.getString("media_type");
+                if (media_type.equals("image")){
+                    HDURL = (String) jsonObject.getString("hdurl");
+                    publishProgress(50);
+                    Thread.sleep(1000);
+                    JSON_Date = (String) jsonObject.getString("date");
+                    publishProgress(75);
+                    Thread.sleep(1000);
+                    title = (String) jsonObject.getString("title");
+                    nonHDURL = (String) jsonObject.getString("url");
 
-                URL urlImage = new URL(nonHDURL);
-                urlConnection = (HttpURLConnection) urlImage.openConnection();
-                urlConnection.connect();
-                image = BitmapFactory.decodeStream(urlConnection.getInputStream());
-                FileOutputStream outputStream = openFileOutput(title+".png", Context.MODE_PRIVATE);
-                image.compress(Bitmap.CompressFormat.PNG,80,outputStream);
-                outputStream.flush();
-                outputStream.close();
-                publishProgress(100);
-                Thread.sleep(1000);
-
+                    URL urlImage = new URL(nonHDURL);
+                    urlConnection = (HttpURLConnection) urlImage.openConnection();
+                    urlConnection.connect();
+                    image = BitmapFactory.decodeStream(urlConnection.getInputStream());
+                    FileOutputStream outputStream = openFileOutput(title+".png", Context.MODE_PRIVATE);
+                    image.compress(Bitmap.CompressFormat.PNG,80,outputStream);
+                    outputStream.flush();
+                    outputStream.close();
+                    publishProgress(100);
+                    Thread.sleep(1000);
+                }else{
+                    publishProgress(100);
+                    Thread.sleep(500);
+                    cancel(true);
+                }
+                isCancelled();
 //                Log.e(TAG, "doInBackground: is the link HDURL: "+HDURL);
 //                Log.e(TAG, "doInBackground: is the link nonHD: "+nonHDURL);
 //                Log.e(TAG, "doInBackground: is the link Date: "+JSON_Date);
@@ -271,7 +284,7 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
             } catch (IOException | JSONException | InterruptedException e) {
                 e.printStackTrace();
             }
-            return "Finished";
+            return "Cancelled! The date contains a video file instead of a picture format!";
         }
 
 
@@ -296,6 +309,15 @@ public class ActivityImageGen extends AppCompatActivity implements NavigationVie
             imageOfDay.setImageBitmap(image);
             bitmapImage = image;
             progressBar.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            super.onCancelled(s);
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(ActivityImageGen.this,getString(R.string.Video_File_Error),Toast.LENGTH_LONG).show();
+            Intent cancelIntent = new Intent(ActivityImageGen.this,ActivitySelection.class);
+            startActivity(cancelIntent);
         }
     }
 

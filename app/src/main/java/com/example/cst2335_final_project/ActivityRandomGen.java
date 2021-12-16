@@ -6,6 +6,7 @@ import static com.example.cst2335_final_project.MyOpener.COL_NAME;
 import static com.example.cst2335_final_project.MyOpener.TABLE_NAME;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -21,6 +22,7 @@ import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -128,12 +130,11 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
                     }
                 }
                 if (randomDate != null){
+                    Log.e(TAG,"the full URL is: "+nasaURL1+urlKey+nasaURL2+randomDate);
+                    Toast.makeText(ActivityRandomGen.this,getString(R.string.Show_Random_Date_Message)+randomDate, Toast.LENGTH_SHORT).show();
                     ActivityRandomGen.ImageQuery imageQueryFromActivityRandom = new ImageQuery();
                     imageQueryFromActivityRandom.execute(nasaURL1+urlKey+nasaURL2+randomDate);
-//        Log.e(TAG,"the full URL is: "+nasaURL1+urlKey+nasaURL2+userDate);
                 }
-
-
             }
         });
 
@@ -147,9 +148,13 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
         BtnFav.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                byte[] convertedImage = Converter.getBytes(bitmapImage);
-                addToDatabase(favTitle,dbNameDate,convertedImage);
-                Snackbar.make(BtnFav, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
+                if (imageView.getDrawable() != null){
+                    byte[] convertedImage = Converter.getBytes(bitmapImage);
+                    addToDatabase(favTitle,dbNameDate,convertedImage);
+                    Snackbar.make(BtnFav, getString(R.string.Show_Message_Saved_To_Favourites), Snackbar.LENGTH_LONG).show();
+                }else{
+                    Snackbar.make(BtnFav, getString(R.string.Show_Message_No_Image_Selected), Snackbar.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -172,7 +177,12 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
                 Toast.makeText(ActivityRandomGen.this,R.string.Show_Message_Main_Page, Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Help:
-
+                AlertDialog dialog = new AlertDialog.Builder(this)
+                        .setTitle(getString(R.string.Alert_Title_Help_ARG))
+                        .setMessage(getString(R.string.Alert_Message_Help_ARG))
+                        .setNeutralButton(getString(R.string.Alert_Neutral_Button), null)
+                        .create();
+                dialog.show();
                 Toast.makeText(ActivityRandomGen.this,R.string.Show_Message_Help_alert,Toast.LENGTH_SHORT).show();
                 break;
             case R.id.Menu_Toolbar_Favourites:
@@ -234,6 +244,7 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
         //full URL is amended by a randomDate done in BtnGen, no date will be selected greater than current date.
         private String Full_URL = nasaURL1+urlKey+nasaURL2+randomDate;
         private String title;
+        private String media_type; // check if its a video or picture
         private String nonHDURL;
         private String JSON_Date;
         private Bitmap image = null; //imageOfTheDay
@@ -259,24 +270,32 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
                 }
                 String result = sb.toString();
                 JSONObject jsonObject = new JSONObject(result);
-                publishProgress(50);
-                Thread.sleep(500);
-                JSON_Date = (String) jsonObject.getString("date");
-                publishProgress(75);
-                Thread.sleep(500);
-                title = (String) jsonObject.getString("title");
-                nonHDURL = (String) jsonObject.getString("url");
+                media_type = (String) jsonObject.getString("media_type");
+                if (media_type.equals("image")){
+                    publishProgress(50);
+                    Thread.sleep(500);
+                    JSON_Date = (String) jsonObject.getString("date");
+                    publishProgress(75);
+                    Thread.sleep(500);
+                    title = (String) jsonObject.getString("title");
+                    nonHDURL = (String) jsonObject.getString("url");
 
-                URL urlImage = new URL(nonHDURL);
-                urlConnection = (HttpURLConnection) urlImage.openConnection();
-                urlConnection.connect();
-                image = BitmapFactory.decodeStream(urlConnection.getInputStream());
-                FileOutputStream outputStream = openFileOutput(title+".png", Context.MODE_PRIVATE);
-                image.compress(Bitmap.CompressFormat.PNG,80,outputStream);
-                outputStream.flush();
-                outputStream.close();
-                publishProgress(100);
-                Thread.sleep(500);
+                    URL urlImage = new URL(nonHDURL);
+                    urlConnection = (HttpURLConnection) urlImage.openConnection();
+                    urlConnection.connect();
+                    image = BitmapFactory.decodeStream(urlConnection.getInputStream());
+                    FileOutputStream outputStream = openFileOutput(title+".png", Context.MODE_PRIVATE);
+                    image.compress(Bitmap.CompressFormat.PNG,80,outputStream);
+                    outputStream.flush();
+                    outputStream.close();
+                    publishProgress(100);
+                    Thread.sleep(500);
+                }else{
+                    publishProgress(100);
+                    Thread.sleep(500);
+                    cancel(true);
+                }
+
 
 //                Log.e(TAG, "doInBackground: is the link HDURL: "+HDURL);
 //                Log.e(TAG, "doInBackground: is the link nonHD: "+nonHDURL);
@@ -308,6 +327,13 @@ public class ActivityRandomGen extends AppCompatActivity implements NavigationVi
             imageView.setImageBitmap(image);
             bitmapImage = image;
             progressBar.setVisibility(View.INVISIBLE);
+        }
+
+        @Override
+        protected void onCancelled(String s) {
+            super.onCancelled(s);
+            progressBar.setVisibility(View.INVISIBLE);
+            Toast.makeText(ActivityRandomGen.this,getString(R.string.Video_File_Error),Toast.LENGTH_LONG).show();
         }
     }
 

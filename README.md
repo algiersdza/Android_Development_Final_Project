@@ -3,20 +3,30 @@ Final Project for CST2355 Algonquin Collage
 by Ibrahim Hermouche
 and Mimi Dib
 
-This application will accept a date and retrieve an image from "NASA Image of the day" web servers.
-This application supports arabic language interface.
 
-## almost done
+This developed application will accept a date and retrieve an image from "NASA Image of the day" web servers. It also contains an activity which can randomly searches for an image on their web servers.
+Arabic language is our selected second language to be supported within our development of this application.
 
-What is completed?
--[x] image save
--[x] delete image
--[x] random generator
--[x] alert dialog on listview items ( get id or delete)
--[x] fragment on listview items
+Development was done on two phases of releases with each phase representing core implementations of requirements of this application.
 
-what new additions?
--[x] work on saving image with title as well not just date
+
+
+# Requirements
+
+- [x] ListView
+- [x] Progress bar and Buttons
+- [x] EditText, Toast and SnackBar
+- [x] 4 activities
+- [x] Fragment
+- [x] Help Menu Item
+- [x] Second language
+- [x] ListView database operations
+- [x] AsyncTask on retrieving data from web server
+- [x] SharedPreferences
+- [x] Single application uploaded to GitHub
+- [x] Professional UI
+- [] JavaDoc comments
+
 
 
 
