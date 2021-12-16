@@ -25,7 +25,7 @@ Development was done on two phases of releases with each phase representing core
 - [x] SharedPreferences
 - [x] Single application uploaded to GitHub
 - [x] Professional UI
-- [] JavaDoc comments
+-[] JavaDoc comments
 
 
 
