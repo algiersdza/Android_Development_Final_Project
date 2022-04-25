@@ -26,8 +26,3 @@ Video link: https://youtu.be/tzQxrcmDqxQ
 - [x] SharedPreferences
 - [x] Single application uploaded to GitHub
 - [x] Professional UI
--[] JavaDoc comments
-
-Video link: https://youtu.be/tzQxrcmDqxQ
-
-
