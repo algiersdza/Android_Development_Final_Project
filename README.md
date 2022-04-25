@@ -7,8 +7,9 @@ and Mimi Dib
 This developed application will accept a date and retrieve an image from "NASA Image of the day" web servers. It also contains an activity which can randomly searches for an image on their web servers.
 Arabic language is our selected second language to be supported within our development of this application.
 
-Development was done on two phases of releases with each phase representing core implementations of requirements of this application.
+Development was done on three phases (Milestone 1, Milestone 2 and finally master branch) of releases with each phase representing core implementations of requirements of this application.
 
+Video link: https://youtu.be/tzQxrcmDqxQ
 
 
 # Requirements
@@ -27,6 +28,6 @@ Development was done on two phases of releases with each phase representing core
 - [x] Professional UI
 -[] JavaDoc comments
 
-
+Video link: https://youtu.be/tzQxrcmDqxQ
 
 
